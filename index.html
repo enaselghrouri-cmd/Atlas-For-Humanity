@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas for Humanity CIC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #333;
+        }
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -4px; left: 0; background-color: #fbbf24; transition: width 0.3s;
+        }
+        .nav-link:hover::after { width: 100%; }
+        
+        /* Darker, richer hero background */
+        .hero-pattern {
+            background-color: #111827; 
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23fbbf24' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-gray-50">
+
+    <!-- Navigation -->
+    <nav class="bg-[#1a1a1a] text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-3"> 
+                
+                <!-- Logo -->
+                <div class="flex items-center cursor-pointer" onclick="showPage('home')">
+                    <img src="logo.png" alt="Atlas for Humanity" class="h-16 md:h-24 object-contain">
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6 items-center">
+                    <button onclick="showPage('home')" class="nav-link hover:text-yellow-400 transition text-sm uppercase tracking-wide">Home</button>
+                    <button onclick="showPage('about')" class="nav-link hover:text-yellow-400 transition text-sm uppercase tracking-wide">Who We Are</button>
+                    <button onclick="showPage('services')" class="nav-link hover:text-yellow-400 transition text-sm uppercase tracking-wide">Our Work</button>
+                    <button onclick="showPage('refugees')" class="text-yellow-400 font-bold border border-yellow-400 px-4 py-2 rounded hover:bg-yellow-400 hover:text-gray-900 transition text-sm uppercase">Refugee Support</button>
+                    <button onclick="showPage('contact')" class="bg-yellow-600 text-gray-900 font-bold px-5 py-2 rounded hover:bg-yellow-500 transition shadow-lg text-sm uppercase">Contact Us</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="focus:outline-none text-yellow-400">
+                        <i class="fas fa-bars text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 pb-4">
+            <button onclick="showPage('home')" class="block w-full text-left px-4 py-3 hover:bg-gray-700 hover:text-yellow-400 border-b border-gray-700">Home</button>
+            <button onclick="showPage('about')" class="block w-full text-left px-4 py-3 hover:bg-gray-700 hover:text-yellow-400 border-b border-gray-700">Who We Are</button>
+            <button onclick="showPage('services')" class="block w-full text-left px-4 py-3 hover:bg-gray-700 hover:text-yellow-400 border-b border-gray-700">Our Work</button>
+            <button onclick="showPage('refugees')" class="block w-full text-left px-4 py-3 bg-gray-700 text-yellow-400 font-bold border-b border-gray-700">Refugee Support</button>
+            <button onclick="showPage('contact')" class="block w-full text-left px-4 py-3 hover:bg-gray-700 hover:text-yellow-400">Contact Us</button>
+        </div>
+    </nav>
+
+    <!-- CONTENT SECTIONS -->
+
+    <!-- HOME PAGE -->
+    <main id="home" class="page-section flex-grow">
+        <!-- Mission Statement Hero -->
+        <div class="hero-pattern text-white py-20 md:py-32">
+            <div class="container mx-auto px-4 text-center max-w-4xl">
+                <h1 class="text-3xl md:text-5xl font-bold mb-6 text-yellow-500 leading-tight">
+                    "Bridging cultures, empowering communities, and fostering mental well-being for a sustainable future."
+                </h1>
+                <p class="text-xl md:text-2xl mb-10 text-gray-300 font-light">
+                    We connect resources, education, and people to create inclusive spaces for Arab and diverse communities across the UK.
+                </p>
+                <div class="flex flex-col md:flex-row justify-center gap-4">
+                    <button onclick="showPage('about')" class="border-2 border-yellow-500 text-yellow-500 font-bold py-3 px-8 rounded-full hover:bg-yellow-500 hover:text-gray-900 transition">
+                        Read Our Story
+                    </button>
+                    <button onclick="showPage('contact')" class="bg-yellow-600 text-gray-900 font-bold py-3 px-8 rounded-full hover:bg-yellow-500 transition shadow-lg">
+                        Collaborate With Us
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEW: NHS Be Well Hub Section -->
+        <div class="bg-white py-12 border-b border-gray-200">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-8">
+                <!-- NHS Logo Placeholder -->
+                <div class="w-32 h-16 md:w-40 md:h-20 flex-shrink-0 flex items-center justify-center">
+                    <img src="nhs-logo.png" alt="NHS Logo" class="max-w-full max-h-full object-contain" onerror="this.src='https://placehold.co/150x80?text=NHS+Logo';">
+                </div>
+                <div class="text-center md:text-left max-w-xl">
+                    <h3 class="text-2xl font-bold text-blue-600 mb-2">Proud Partner: NHS Be Well Hub</h3>
+                    <p class="text-gray-600">
+                        We collaborate closely with the <strong>NHS Be Well Hub</strong> to support community mental health and well-being. Together, we provide resources and safe spaces for healing and growth.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUICK ACTIONS: Newsletter & Volunteering -->
+        <div class="bg-gray-900 py-12 border-b border-gray-800">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    
+                    <!-- Newsletter -->
+                    <div class="bg-gray-800 p-6 rounded-xl flex items-center shadow-lg border border-gray-700">
+                        <div class="bg-white p-2 rounded mr-6 flex-shrink-0">
+                            <!-- Link wrapping the image so it is clickable -->
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe603SkymX3zpEyBhTVEH3KV3qqj3KqnnfRaDDjWLs-t_MRcQ/viewform" target="_blank">
+                                <img src="qr-newsletter.png" alt="Scan to Subscribe" class="w-24 h-24 object-contain" onerror="this.src='https://placehold.co/150x150?text=QR+Code';">
+                            </a>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">Stay Updated</h3>
+                            <p class="text-gray-400 text-sm mb-3">Scan to subscribe to our newsletter for event notifications.</p>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe603SkymX3zpEyBhTVEH3KV3qqj3KqnnfRaDDjWLs-t_MRcQ/viewform" target="_blank" class="text-yellow-500 text-sm font-bold hover:underline">Or click here to sign up &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Volunteer -->
+                    <div class="bg-gray-800 p-6 rounded-xl flex items-center shadow-lg border border-gray-700">
+                        <div class="bg-white p-2 rounded mr-6 flex-shrink-0">
+                            <!-- Link wrapping the image so it is clickable -->
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf4iW6IZQ7WIV97qRDCnfnLxLQnm1ToCu72m2XGuvb0pg-EjA/viewform" target="_blank">
+                                <img src="qr-volunteer.png" alt="Scan to Volunteer" class="w-24 h-24 object-contain" onerror="this.src='https://placehold.co/150x150?text=QR+Code';">
+                            </a>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">Join the Team</h3>
+                            <p class="text-gray-400 text-sm mb-3">Scan to apply via our Google Form to become a volunteer.</p>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf4iW6IZQ7WIV97qRDCnfnLxLQnm1ToCu72m2XGuvb0pg-EjA/viewform" target="_blank" class="text-yellow-500 text-sm font-bold hover:underline">Or click here to apply &rarr;</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Outreach & Collaboration Section -->
+        <div class="bg-gray-50 py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Outreach & Collaboration</h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow text-center hover:-translate-y-1 transition duration-300">
+                        <i class="fas fa-school text-4xl text-yellow-600 mb-4"></i>
+                        <h3 class="font-bold text-lg mb-2">Schools</h3>
+                        <p class="text-gray-600 text-sm">Delivering workshops and educational support.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow text-center hover:-translate-y-1 transition duration-300">
+                        <i class="fas fa-users text-4xl text-yellow-600 mb-4"></i>
+                        <h3 class="font-bold text-lg mb-2">Youth Clubs</h3>
+                        <p class="text-gray-600 text-sm">Empowering the next generation through mentorship.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow text-center hover:-translate-y-1 transition duration-300">
+                        <i class="fas fa-building text-4xl text-yellow-600 mb-4"></i>
+                        <h3 class="font-bold text-lg mb-2">Corporate Teams</h3>
+                        <p class="text-gray-600 text-sm">Diversity training and community engagement.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow text-center hover:-translate-y-1 transition duration-300">
+                        <i class="fas fa-hospital-user text-4xl text-yellow-600 mb-4"></i>
+                        <h3 class="font-bold text-lg mb-2">NHS & Council Hubs</h3>
+                        <p class="text-gray-600 text-sm">Working with key stakeholders for community health.</p>
+                    </div>
+                </div>
+                <div class="text-center mt-10">
+                    <p class="text-gray-600 mb-4">Interested in partnering with us?</p>
+                    <button onclick="showPage('contact')" class="text-yellow-600 font-bold border-b-2 border-yellow-600 hover:text-yellow-700">Fill in our collaboration form &rarr;</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEW: Donate Section -->
+        <div class="bg-[#1a1a1a] py-16 border-t border-gray-800">
+            <div class="container mx-auto px-4 text-center max-w-3xl">
+                <div class="text-yellow-500 text-5xl mb-6">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-white mb-4">Support Our Mission</h2>
+                <p class="text-gray-400 mb-8 text-lg">
+                    Atlas for Humanity relies on the generosity of our community to continue providing vital services, workshops, and support networks. Your contribution helps us reach more families and build stronger bridges.
+                </p>
+                <button onclick="showPage('contact')" class="bg-yellow-500 text-gray-900 font-bold py-3 px-10 rounded-full hover:bg-yellow-400 transition transform hover:scale-105 shadow-xl text-lg">
+                    Donate Now
+                </button>
+                <p class="text-xs text-gray-500 mt-4">* Donation portal coming soon. Contact us for direct support options.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- ABOUT / WHO WE ARE PAGE (RESTORED TO OLD VERSION) -->
+    <main id="about" class="page-section hidden flex-grow">
+        <div class="bg-white py-16">
+            <div class="container mx-auto px-4 max-w-4xl text-center">
+                <h1 class="text-4xl font-bold text-gray-900 mb-10">Who We Are</h1>
+                
+                <!-- Orange/Gold Highlight Paragraph -->
+                <p class="text-yellow-600 font-bold text-xl mb-8 leading-relaxed">
+                    Atlas for Humanity is a non-political, inclusive-to-all Community Interest Company (CIC) dedicated to supporting equity, dignity, and belonging for people navigating change, transition, or challenge.
+                </p>
+
+                <!-- Standard Paragraphs -->
+                <p class="text-gray-700 text-lg mb-6 leading-relaxed">
+                    We work with integrity, empathy, and deep respect for all cultures, identities, and faiths. We believe that confidence and connection grow where people feel heard, valued, and able to keep their identity and heritage close, rather than set aside.
+                </p>
+
+                <p class="text-gray-700 text-lg mb-10 leading-relaxed">
+                    Our approach brings together mental-health informed support, teaching and skill-building, and authentic community connection. We create spaces where learning feels safe, support feels human, and belonging feels possible.
+                </p>
+
+                <!-- "We are" Box -->
+                <div class="bg-gray-50 p-8 rounded-lg text-left border-l-4 border-yellow-500 mb-12 shadow-sm inline-block w-full">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">We are:</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-600 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Guided by community voices and lived experience</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-600 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Rooted in trust, partnerships, empathy, and co-creation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-600 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Focused on learning, capability building, and social equity</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-600 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Committed to helping people grow, take part, and contribute meaningfully to the communities around them</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Footer Quote -->
+                <p class="text-2xl font-bold text-gray-800 italic font-serif">
+                    "Atlas for Humanity is not simply a service — it is a community.<br>
+                    A place to learn, to heal, and to belong."
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- SERVICES PAGE -->
+    <main id="services" class="page-section hidden flex-grow">
+        <div class="py-16 container mx-auto px-4">
+            <h1 class="text-4xl font-bold text-gray-900 mb-12 text-center">Our Core Pillars</h1>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Advocacy -->
+                <div class="bg-white p-8 rounded-xl shadow-md border-t-4 border-yellow-500 hover:shadow-xl transition">
+                    <div class="bg-yellow-50 w-16 h-16 rounded-full flex items-center justify-center mb-6 text-yellow-600 text-2xl">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Advocacy</h3>
+                    <p class="text-gray-600">Representing the voices of Arab and underrepresented communities in local and national dialogues.</p>
+                </div>
+                <!-- Digital -->
+                <div class="bg-white p-8 rounded-xl shadow-md border-t-4 border-yellow-500 hover:shadow-xl transition">
+                    <div class="bg-yellow-50 w-16 h-16 rounded-full flex items-center justify-center mb-6 text-yellow-600 text-2xl">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Digital Inclusion</h3>
+                    <p class="text-gray-600">Bridging the digital divide by providing access to technology and digital literacy training.</p>
+                </div>
+                <!-- Health -->
+                <div class="bg-white p-8 rounded-xl shadow-md border-t-4 border-yellow-500 hover:shadow-xl transition">
+                    <div class="bg-yellow-50 w-16 h-16 rounded-full flex items-center justify-center mb-6 text-yellow-600 text-2xl">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Health & Wellbeing</h3>
+                    <p class="text-gray-600">Workshops focused on mental health, nutrition, and physical wellbeing.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- REFUGEES PAGE -->
+    <main id="refugees" class="page-section hidden flex-grow">
+        <div class="bg-gray-50 py-16">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <span class="text-yellow-600 font-bold uppercase tracking-wider">Our Commitment</span>
+                    <h1 class="text-4xl font-bold text-gray-900 mt-2">Refugee Support Services</h1>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-lg border-l-8 border-yellow-500 mb-12 max-w-4xl mx-auto">
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        At Atlas for Humanity, we believe that seeking safety is a human right. Our dedicated Refugee Support division works tirelessly to ensure that newcomers to the UK feel welcomed, supported, and empowered to rebuild their lives.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="bg-white p-6 rounded shadow border-t-2 border-gray-100">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3"><i class="fas fa-map-signs mr-2 text-yellow-600"></i>Integration Support</h3>
+                        <p class="text-gray-600">Navigating a new country can be overwhelming. We assist with understanding local systems, housing, and healthcare access.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded shadow border-t-2 border-gray-100">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3"><i class="fas fa-language mr-2 text-yellow-600"></i>Language & Culture</h3>
+                        <p class="text-gray-600">Providing English conversation clubs and cultural exchange workshops to break down barriers.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded shadow border-t-2 border-gray-100">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3"><i class="fas fa-briefcase mr-2 text-yellow-600"></i>Employment Pathways</h3>
+                        <p class="text-gray-600">CV workshops, interview preparation, and connecting skilled refugees with inclusive employers.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded shadow border-t-2 border-gray-100">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3"><i class="fas fa-gavel mr-2 text-yellow-600"></i>Legal Signposting</h3>
+                        <p class="text-gray-600">Referrals to trusted legal partners for asylum claims and status settlement inquiries.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- CONTACT PAGE -->
+    <main id="contact" class="page-section hidden flex-grow">
+        <div class="container mx-auto px-4 py-16">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4 text-center">Contact Us</h1>
+                <p class="text-center text-gray-600 mb-12">Interested in collaborating or have a question? Please fill in the form below.</p>
+                
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-2/3 bg-white p-8 rounded-lg shadow-lg">
+                        <form onsubmit="event.preventDefault(); alert('Message sent!');">
+                            <div class="mb-4">
+                                <label class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                                <input type="text" class="w-full px-3 py-3 border rounded-lg focus:outline-none focus:border-yellow-500 bg-gray-50" placeholder="Your Name">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                                <input type="email" class="w-full px-3 py-3 border rounded-lg focus:outline-none focus:border-yellow-500 bg-gray-50" placeholder="your@email.com">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 text-sm font-bold mb-2">Subject</label>
+                                <select class="w-full px-3 py-3 border rounded-lg focus:outline-none focus:border-yellow-500 bg-gray-50">
+                                    <option>General Inquiry</option>
+                                    <option>Collaboration / Partnership</option>
+                                    <option>Volunteering</option>
+                                    <option>Donation Inquiry</option>
+                                </select>
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-gray-700 text-sm font-bold mb-2">Message</label>
+                                <textarea class="w-full px-3 py-3 border rounded-lg focus:outline-none focus:border-yellow-500 bg-gray-50" rows="5" placeholder="How can we help?"></textarea>
+                            </div>
+                            <button type="submit" class="bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded hover:bg-yellow-500 transition w-full">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="md:w-1/3">
+                        <div class="bg-gray-100 p-8 rounded-lg border border-gray-200">
+                            <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+                            <p class="mb-6 text-sm text-gray-600">For general inquiries, email is the best way to reach us.</p>
+                            
+                            <div class="flex items-start mb-4">
+                                <i class="fas fa-envelope mt-1 mr-3 text-yellow-600"></i>
+                                <div>
+                                    <p class="font-bold text-gray-800">Email</p>
+                                    <p class="text-gray-600">bewell@atlasforhumanitycic.co.uk</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start mb-4">
+                                <i class="fas fa-map-marker-alt mt-1 mr-3 text-yellow-600"></i>
+                                <div>
+                                    <p class="font-bold text-gray-800">Location</p>
+                                    <p class="text-gray-600">London, United Kingdom</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-8 pt-6 border-t border-gray-300">
+                                <h4 class="font-bold mb-2">Working Hours</h4>
+                                <p class="text-sm text-gray-600">Monday - Friday: 9:00 AM - 5:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#111111] text-gray-400 py-10 mt-auto">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <h4 class="text-xl font-bold text-white mb-2">Atlas for Humanity CIC</h4>
+                    <p class="text-sm max-w-md">Empowering diverse communities through connection, education, and support.</p>
+                </div>
+                <div class="flex space-x-8">
+                    <a href="#" class="hover:text-yellow-500 transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-yellow-500 transition">Terms of Use</a>
+                    <a href="#" class="hover:text-yellow-500 transition">Volunteer</a>
+                </div>
+            </div>
+            <div class="text-center text-xs mt-10 pt-6 border-t border-gray-800">
+                &copy; 2025 Atlas for Humanity CIC. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(pageId).classList.remove('hidden');
+            document.getElementById('mobile-menu').classList.add('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home');
+        });
+    </script>
+</body>
+</html>
