@@ -1,5 +1,5 @@
 /**
- * ATLAS FOR HUMANITY — Daily Reel Generator
+ * ATLAS FOR HUMANITY — Daily Reel Generator (v2 — timeout-safe)
  * Google Apps Script — runs daily at 8:00 AM UK time
  *
  * Generates 3 production-ready bilingual reel scripts:
@@ -7,10 +7,17 @@
  *   Script 2 — Work / Professional Situation
  *   Script 3 — Posh / Upper-Class Social & Professional
  *
- * Saves to Google Drive → emails Enas with links
+ * Each script runs as a separate function to avoid the 6-minute timeout.
  *
- * SETUP: See DAILY_AUTOMATION_SETUP.md for full instructions.
- * API key: Add ANTHROPIC_API_KEY as a Script Property (Project Settings > Script Properties)
+ * SETUP:
+ * 1. Paste this into script.google.com
+ * 2. Add ANTHROPIC_API_KEY in Project Settings > Script Properties
+ * 3. Run createDriveFolder once (approve permissions)
+ * 4. Run setupDailyTriggers once — this creates 4 triggers automatically:
+ *      7:00 AM → Script 1 (Social)
+ *      7:03 AM → Script 2 (Professional)
+ *      7:06 AM → Script 3 (Posh)
+ *      7:10 AM → Send email with all 3 links
  */
 
 // ── Configuration ─────────────────────────────────────────────────────────────
@@ -22,7 +29,7 @@ const CONFIG = {
   maxTokens:         8000,
 };
 
-// ── Brand voice master brief (injected into every prompt) ─────────────────────
+// ── Brand voice master brief ──────────────────────────────────────────────────
 const BRAND_BRIEF = `
 You are a bilingual content strategist for Atlas for Humanity, a UK-registered Community Interest Company supporting the SWANA (South West Asia and North Africa) diaspora in the UK.
 
@@ -103,7 +110,7 @@ List all sources with full URLs.
 Write the full output now. Be specific, be deep, be warm. No generic placeholders.`;
 }
 
-// ── Topic selection (rotates through categories) ──────────────────────────────
+// ── Topic selection (rotates by day of week) ──────────────────────────────────
 function getTodayTopics() {
   const socialTopics = [
     'Decode a specific British social situation or unspoken rule that SWANA diaspora encounter in everyday UK life — shops, streets, neighbours, social gatherings, public transport. Choose one that is currently trending or seasonally relevant.',
@@ -123,8 +130,7 @@ function getTodayTopics() {
     'Decode a specific upper-class British institution or event — Ascot, Wimbledon, a Livery Company dinner, a Royal garden party invitation, a club (RAC, Reform, Athenaeum) — and what SWANA professionals need to know if they receive an invitation.',
   ];
 
-  // Rotate based on day of week so variety is built in
-  const day = new Date().getDay(); // 0=Sun, 1=Mon, ...
+  const day = new Date().getDay();
   return {
     social:       socialTopics[day % socialTopics.length],
     professional: professionalTopics[day % professionalTopics.length],
@@ -161,15 +167,12 @@ function callClaude(prompt) {
   return json.content[0].text;
 }
 
-// ── Save script to Google Drive as a Google Doc ───────────────────────────────
+// ── Save to Google Drive as a Google Doc ──────────────────────────────────────
 function saveToGoogleDoc(folderId, title, content) {
   const doc  = DocumentApp.create(title);
   const body = doc.getBody();
-
-  // Style the document
   body.clear();
 
-  // Title
   const titlePara = body.appendParagraph('ATLAS FOR HUMANITY');
   titlePara.setHeading(DocumentApp.ParagraphHeading.TITLE);
   titlePara.setAlignment(DocumentApp.HorizontalAlignment.CENTER);
@@ -180,7 +183,6 @@ function saveToGoogleDoc(folderId, title, content) {
 
   body.appendHorizontalRule();
 
-  // Content — split into paragraphs
   const lines = content.split('\n');
   for (const line of lines) {
     if (line.startsWith('## ')) {
@@ -198,7 +200,6 @@ function saveToGoogleDoc(folderId, title, content) {
 
   doc.saveAndClose();
 
-  // Move to the Atlas folder
   const file   = DriveApp.getFileById(doc.getId());
   const folder = DriveApp.getFolderById(folderId);
   folder.addFile(file);
@@ -207,17 +208,98 @@ function saveToGoogleDoc(folderId, title, content) {
   return { url: doc.getUrl(), title: title };
 }
 
-// ── Get or create the Atlas Daily Reels folder ───────────────────────────────
+// ── Get or create Drive folder ────────────────────────────────────────────────
 function getOrCreateFolder() {
   const folders = DriveApp.getFoldersByName(CONFIG.driveFolderName);
   if (folders.hasNext()) return folders.next().getId();
-
-  const folder = DriveApp.createFolder(CONFIG.driveFolderName);
-  return folder.getId();
+  return DriveApp.createFolder(CONFIG.driveFolderName).getId();
 }
 
-// ── Send Gmail notification ───────────────────────────────────────────────────
-function sendEmailNotification(dateStr, scripts) {
+// ── Helper: store/retrieve script results between runs ────────────────────────
+function storeResult(key, data) {
+  PropertiesService.getScriptProperties().setProperty(key, JSON.stringify(data));
+}
+
+function getResult(key) {
+  const val = PropertiesService.getScriptProperties().getProperty(key);
+  return val ? JSON.parse(val) : null;
+}
+
+function getTodayKey(scriptNum) {
+  const dateSlug = new Date().toISOString().split('T')[0];
+  return `result_${dateSlug}_${scriptNum}`;
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// 3 SEPARATE FUNCTIONS — one per script (each runs within 6-min limit)
+// ══════════════════════════════════════════════════════════════════════════════
+
+function generateScript1_Social() {
+  const topics   = getTodayTopics();
+  const folderId = getOrCreateFolder();
+  const dateSlug = new Date().toISOString().split('T')[0];
+
+  Logger.log('Generating Script 1 (Social)...');
+  try {
+    const prompt  = buildScriptPrompt(1, 'DAILY SOCIAL SITUATION', topics.social);
+    const content = callClaude(prompt);
+    const title   = `Atlas Reel ${dateSlug} — 1. Daily Social Situation`;
+    const saved   = saveToGoogleDoc(folderId, title, content);
+    storeResult(getTodayKey(1), saved);
+    Logger.log('✓ Script 1 saved: ' + saved.url);
+  } catch (e) {
+    Logger.log('✗ Script 1 failed: ' + e.message);
+    storeResult(getTodayKey(1), { title: 'Script 1 — FAILED: ' + e.message, url: '#' });
+  }
+}
+
+function generateScript2_Professional() {
+  const topics   = getTodayTopics();
+  const folderId = getOrCreateFolder();
+  const dateSlug = new Date().toISOString().split('T')[0];
+
+  Logger.log('Generating Script 2 (Professional)...');
+  try {
+    const prompt  = buildScriptPrompt(2, 'WORK / PROFESSIONAL SITUATION', topics.professional);
+    const content = callClaude(prompt);
+    const title   = `Atlas Reel ${dateSlug} — 2. Professional Situation`;
+    const saved   = saveToGoogleDoc(folderId, title, content);
+    storeResult(getTodayKey(2), saved);
+    Logger.log('✓ Script 2 saved: ' + saved.url);
+  } catch (e) {
+    Logger.log('✗ Script 2 failed: ' + e.message);
+    storeResult(getTodayKey(2), { title: 'Script 2 — FAILED: ' + e.message, url: '#' });
+  }
+}
+
+function generateScript3_Posh() {
+  const topics   = getTodayTopics();
+  const folderId = getOrCreateFolder();
+  const dateSlug = new Date().toISOString().split('T')[0];
+
+  Logger.log('Generating Script 3 (Posh/Upper Class)...');
+  try {
+    const prompt  = buildScriptPrompt(3, 'POSH / UPPER-CLASS SOCIAL & PROFESSIONAL', topics.posh);
+    const content = callClaude(prompt);
+    const title   = `Atlas Reel ${dateSlug} — 3. Posh & Upper Class`;
+    const saved   = saveToGoogleDoc(folderId, title, content);
+    storeResult(getTodayKey(3), saved);
+    Logger.log('✓ Script 3 saved: ' + saved.url);
+  } catch (e) {
+    Logger.log('✗ Script 3 failed: ' + e.message);
+    storeResult(getTodayKey(3), { title: 'Script 3 — FAILED: ' + e.message, url: '#' });
+  }
+}
+
+// ── Email notification (runs after all 3 scripts are done) ────────────────────
+function sendDailyEmail() {
+  const dateStr = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  const script1 = getResult(getTodayKey(1)) || { title: 'Script 1 — not generated yet', url: '#' };
+  const script2 = getResult(getTodayKey(2)) || { title: 'Script 2 — not generated yet', url: '#' };
+  const script3 = getResult(getTodayKey(3)) || { title: 'Script 3 — not generated yet', url: '#' };
+  const scripts = [script1, script2, script3];
+
   const subject = `🎬 Atlas Daily Reels Ready — ${dateStr}`;
 
   const htmlBody = `
@@ -262,88 +344,99 @@ function sendEmailNotification(dateStr, scripts) {
   `;
 
   GmailApp.sendEmail(CONFIG.notificationEmail, subject, '', { htmlBody });
+  Logger.log('✓ Email sent to ' + CONFIG.notificationEmail);
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
-// MAIN FUNCTION — called by the daily trigger
+// RUN ALL NOW — chains the 3 scripts + email using time-based triggers
 // ══════════════════════════════════════════════════════════════════════════════
 
-function generateDailyReels() {
-  const dateStr  = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-  const dateSlug = new Date().toISOString().split('T')[0];
-  const topics   = getTodayTopics();
-  const folderId = getOrCreateFolder();
+function runAllNow() {
+  // Run Script 1 immediately
+  generateScript1_Social();
 
-  Logger.log(`Starting Atlas Daily Reels generation for ${dateStr}...`);
+  // Schedule Script 2 in 3 minutes
+  ScriptApp.newTrigger('generateScript2_Professional')
+    .timeBased()
+    .after(3 * 60 * 1000)
+    .create();
 
-  const scripts = [];
+  // Schedule Script 3 in 6 minutes
+  ScriptApp.newTrigger('generateScript3_Posh')
+    .timeBased()
+    .after(6 * 60 * 1000)
+    .create();
 
-  // ── Script 1: Social ─────────────────────────────────────────────────────
-  try {
-    Logger.log('Generating Script 1 (Social)...');
-    const prompt1  = buildScriptPrompt(1, 'DAILY SOCIAL SITUATION', topics.social);
-    const content1 = callClaude(prompt1);
-    const title1   = `Atlas Reel ${dateSlug} — 1. Daily Social Situation`;
-    const saved1   = saveToGoogleDoc(folderId, title1, content1);
-    scripts.push(saved1);
-    Logger.log('✓ Script 1 saved.');
-  } catch (e) {
-    Logger.log(`✗ Script 1 failed: ${e.message}`);
-    scripts.push({ title: 'Script 1 — FAILED: ' + e.message, url: '#' });
+  // Schedule email in 10 minutes
+  ScriptApp.newTrigger('sendDailyEmail')
+    .timeBased()
+    .after(10 * 60 * 1000)
+    .create();
+
+  Logger.log('✓ Script 1 done. Scripts 2 & 3 scheduled. Email in ~10 min.');
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// SETUP — creates daily triggers (run once)
+// ══════════════════════════════════════════════════════════════════════════════
+
+function setupDailyTriggers() {
+  // Remove any existing Atlas triggers first
+  const existing = ScriptApp.getProjectTriggers();
+  for (const t of existing) {
+    const fname = t.getHandlerFunction();
+    if (['generateScript1_Social', 'generateScript2_Professional',
+         'generateScript3_Posh', 'sendDailyEmail'].includes(fname)) {
+      ScriptApp.deleteTrigger(t);
+    }
   }
 
-  // ── Script 2: Professional ───────────────────────────────────────────────
-  try {
-    Logger.log('Generating Script 2 (Professional)...');
-    const prompt2  = buildScriptPrompt(2, 'WORK / PROFESSIONAL SITUATION', topics.professional);
-    const content2 = callClaude(prompt2);
-    const title2   = `Atlas Reel ${dateSlug} — 2. Professional Situation`;
-    const saved2   = saveToGoogleDoc(folderId, title2, content2);
-    scripts.push(saved2);
-    Logger.log('✓ Script 2 saved.');
-  } catch (e) {
-    Logger.log(`✗ Script 2 failed: ${e.message}`);
-    scripts.push({ title: 'Script 2 — FAILED: ' + e.message, url: '#' });
-  }
+  // Script 1 at 7:00 AM
+  ScriptApp.newTrigger('generateScript1_Social')
+    .timeBased()
+    .atHour(7).nearMinute(0)
+    .everyDays(1)
+    .create();
 
-  // ── Script 3: Posh / Upper Class ─────────────────────────────────────────
-  try {
-    Logger.log('Generating Script 3 (Posh/Upper Class)...');
-    const prompt3  = buildScriptPrompt(3, 'POSH / UPPER-CLASS SOCIAL & PROFESSIONAL', topics.posh);
-    const content3 = callClaude(prompt3);
-    const title3   = `Atlas Reel ${dateSlug} — 3. Posh & Upper Class`;
-    const saved3   = saveToGoogleDoc(folderId, title3, content3);
-    scripts.push(saved3);
-    Logger.log('✓ Script 3 saved.');
-  } catch (e) {
-    Logger.log(`✗ Script 3 failed: ${e.message}`);
-    scripts.push({ title: 'Script 3 — FAILED: ' + e.message, url: '#' });
-  }
+  // Script 2 at 7:03 AM (use 7:00 + nearMinute offset — closest we can get)
+  ScriptApp.newTrigger('generateScript2_Professional')
+    .timeBased()
+    .atHour(7).nearMinute(15)
+    .everyDays(1)
+    .create();
 
-  // ── Send email notification ───────────────────────────────────────────────
-  try {
-    sendEmailNotification(dateStr, scripts);
-    Logger.log(`✓ Email sent to ${CONFIG.notificationEmail}`);
-  } catch (e) {
-    Logger.log(`✗ Email failed: ${e.message}`);
-  }
+  // Script 3 at 7:30 AM
+  ScriptApp.newTrigger('generateScript3_Posh')
+    .timeBased()
+    .atHour(7).nearMinute(30)
+    .everyDays(1)
+    .create();
 
-  Logger.log('✅ Atlas Daily Reels generation complete.');
+  // Email at 7:45 AM
+  ScriptApp.newTrigger('sendDailyEmail')
+    .timeBased()
+    .atHour(7).nearMinute(45)
+    .everyDays(1)
+    .create();
+
+  Logger.log('✅ 4 daily triggers created:');
+  Logger.log('   7:00 AM — Script 1 (Social)');
+  Logger.log('   7:15 AM — Script 2 (Professional)');
+  Logger.log('   7:30 AM — Script 3 (Posh/Upper Class)');
+  Logger.log('   7:45 AM — Email notification');
+  Logger.log('   (Times are approximate — Google may run ±15 min)');
 }
 
 // ── One-time setup: create the Drive folder ───────────────────────────────────
 function createDriveFolder() {
   const folderId = getOrCreateFolder();
-  Logger.log(`✓ Drive folder ready. ID: ${folderId}`);
-  Logger.log(`  Find it at: https://drive.google.com/drive/folders/${folderId}`);
-  SpreadsheetApp.getUi && Browser.msgBox(
-    'Setup complete! Google Drive folder "Atlas Daily Reels" is ready.\n\nNow set up the daily trigger:\n1. Click the clock icon (Triggers)\n2. Add Trigger → generateDailyReels → Day timer → 7am-8am'
-  );
+  Logger.log('✓ Drive folder ready. ID: ' + folderId);
+  Logger.log('  Find it at: https://drive.google.com/drive/folders/' + folderId);
 }
 
-// ── Test run (manual trigger to check everything works) ──────────────────────
+// ── Test API connection ───────────────────────────────────────────────────────
 function testRun() {
-  Logger.log('Running test (Script 1 only, short version)...');
+  Logger.log('Running test...');
   const apiKey = PropertiesService.getScriptProperties().getProperty('ANTHROPIC_API_KEY');
   if (!apiKey) {
     Logger.log('ERROR: ANTHROPIC_API_KEY not set. Go to Project Settings > Script Properties and add it.');
@@ -360,6 +453,6 @@ Just confirm the API is working.`;
     Logger.log('✅ API connection successful. Sample output:');
     Logger.log(result.substring(0, 500));
   } catch (e) {
-    Logger.log(`❌ API test failed: ${e.message}`);
+    Logger.log('❌ API test failed: ' + e.message);
   }
 }
