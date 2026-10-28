@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Office Community Q&amp;A — 7 August 2026 | Atlas for Humanity CIC</title>
+<meta name="description" content="Searchable record of the 7 August 2026 Home Office community Q&amp;A session hosted by Atlas for Humanity CIC.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            300: '#e8d48b',
+                            400: '#C9A84C',
+                            500: '#B8960C',
+                            600: '#9A7D0A',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<style>
+        :root { --gold: #C9A84C; --gold-dark: #9A7D0A; --gold-light: #e8d48b; }
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #333; }
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -4px; left: 0; background-color: var(--gold); transition: width 0.3s;
+        }
+        .nav-link:hover::after { width: 100%; }
+        .hero-pattern {
+            background-color: #000000;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .gold-text { color: var(--gold); }
+        .gold-border { border-color: var(--gold); }
+        .gold-bg { background-color: var(--gold); }
+        .gold-bg-dark { background-color: var(--gold-dark); }
+        .btn-gold { background-color: var(--gold); color: #000; font-weight: 700; transition: all 0.2s; }
+        .btn-gold:hover { background-color: var(--gold-light); }
+        .btn-gold-outline { border: 2px solid var(--gold); color: var(--gold); font-weight: 700; transition: all 0.2s; }
+        .btn-gold-outline:hover { background-color: var(--gold); color: #000; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-gray-50">
+<header class="bg-black text-white border-b border-zinc-800">
+  <div class="container mx-auto px-4 py-6 max-w-4xl">
+    <a href="index.html" class="text-sm font-bold gold-text hover:underline">&larr; Back to Atlas for Humanity</a>
+    <p class="text-gray-300 mt-3 text-sm">Home Office Community Sessions &middot; 7 August 2026</p>
+  </div>
+</header>
+<main class="page-section flex-grow" id="august-qa">
+<div class="bg-white py-16">
+<div class="container mx-auto px-4 max-w-4xl">
+<div class="text-center mb-10">
+<span class="font-bold uppercase tracking-wider gold-text text-sm">Community Engagement Record</span>
+<h1 class="text-4xl font-bold text-gray-900 mt-2 mb-4">Q&amp;A with Home Office</h1>
+<p class="text-gray-600 max-w-2xl mx-auto">A searchable record of questions raised by Syrian community members and answers given by Home Office representatives during the 7 August 2026 session, organised by Atlas for Humanity CIC and a Syrian British consortium. Click any question to expand the answer.</p>
+<p class="text-xs text-gray-400 mt-3">Session: 7 August 2026, online · Panel: Home Office National Community Engagement Team &amp; Immigration Enforcement Safeguarding</p>
+</div>
+<div class="bg-amber-50 border border-amber-200 rounded-lg p-5 mb-10 flex gap-3 max-w-3xl mx-auto">
+<i class="fas fa-triangle-exclamation text-amber-600 mt-1"></i>
+<p class="text-sm text-gray-700"><strong class="text-amber-700">This is not immigration advice.</strong> It is a record of one community session, shared for general awareness only. Immigration rules and individual cases vary. For your own situation, speak to a regulated, OISC or Law Society-accredited immigration adviser or solicitor, and check <strong>gov.uk</strong> for current rules.</p>
+</div>
+<div class="max-w-3xl mx-auto mb-8 bg-white py-3">
+<div class="flex gap-3 items-center">
+<input class="flex-1 px-4 py-3 border rounded-lg focus:outline-none bg-gray-50 text-sm" id="qaSearch" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--gold)'" placeholder="Search questions and answers…" style="border-color:#ddd" type="text"/>
+<button class="text-xs font-bold border rounded-lg px-3 py-3 gold-border gold-text whitespace-nowrap" id="qaLegendToggle" type="button">Show tags</button>
+</div>
+<div class="hidden flex-wrap gap-2 mt-3 text-xs" id="qaLegend">
+<span class="px-3 py-1 rounded-full font-bold bg-blue-100 text-blue-700">Current rule</span>
+<span class="px-3 py-1 rounded-full font-bold bg-amber-100 text-amber-700">To be confirmed</span>
+<span class="px-3 py-1 rounded-full font-bold bg-green-100 text-green-700">General guidance</span>
+</div>
+<p class="text-xs text-gray-500 mt-2" id="qaCountLine">Browse 16 questions</p>
+</div>
+<div class="max-w-3xl mx-auto" id="qaTopics"></div>
+<p class="hidden text-center text-gray-500 py-10 max-w-3xl mx-auto" id="qaNoResults">No questions match your search. Try a different term.</p>
+<div class="max-w-3xl mx-auto mt-14 bg-gray-50 border-l-4 gold-border rounded-lg p-6">
+<h2 class="text-sm font-bold uppercase tracking-wide gold-text mb-4">Key Recurring Messages From the Session</h2>
+<div class="space-y-3 text-sm text-gray-700">
+<p><strong class="text-gray-900">Evidence, evidence, evidence.</strong> The Home Office "can't read minds" — years of residence, work, tax records, children's schooling, medical treatment, and any ongoing personal risk all need to be submitted in writing, ideally with a covering letter.</p>
+<p><strong class="text-gray-900">The pause on Syrian decisions has been lifted</strong>, but the backlog it created means decisions are still taking longer than normal. Every case is decided on its own individual merits, not as a block.</p>
+<p><strong class="text-gray-900">While an application is pending</strong>, your prior lawful status continues and no one will be arrested, detained or removed. Leaving the UK, or asking for documents back to travel, is normally treated as withdrawing the application.</p>
+<p><strong class="text-gray-900">Never switch routes by withdrawing a current application</strong> without independent legal advice — it can leave you in the UK unlawfully in the meantime.</p>
+<p><strong class="text-gray-900">Two items are being followed up</strong> by the Home Office team outside the call: the 18-month case with no Notice of Intention, and general accountability contacts for the Syrian backlog. Updates were promised via the organisers.</p>
+</div>
+</div>
+<div class="max-w-3xl mx-auto mt-10">
+<h2 class="text-xl font-bold text-gray-900 border-b pb-2 mb-4">Links Shared During the Session</h2>
+<ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
+<li>Shortage Occupation List — permitted jobs for asylum seekers (Appendix J &amp; K): <a class="gold-text hover:underline" href="https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-skilled-occupations" rel="noopener" target="_blank">gov.uk/guidance/immigration-rules/immigration-rules-appendix-skilled-occupations</a></li>
+<li>Update or correct your eVisa (UKVI account): <a class="gold-text hover:underline" href="https://www.gov.uk/evisa/update-ukvi-account" rel="noopener" target="_blank">gov.uk/evisa/update-ukvi-account</a></li>
+<li>Feedback / questions form: <a class="gold-text hover:underline" href="https://forms.gle/di9VjC8QiKLAB5278" rel="noopener" target="_blank">forms.gle/di9VjC8QiKLAB5278</a></li>
+<li>Feedback form (shared again at close of session): <a class="gold-text hover:underline" href="https://forms.gle/1NWe5iLgN62MCVKn6" rel="noopener" target="_blank">forms.gle/1NWe5iLgN62MCVKn6</a></li>
+</ul>
+</div>
+<div class="max-w-3xl mx-auto mt-10">
+<h2 class="text-xl font-bold text-gray-900 border-b pb-2 mb-4">Contacts Shared During the Session</h2>
+<div class="space-y-4">
+<div class="bg-white border rounded-lg p-4 shadow-sm">
+<h3 class="font-bold gold-text text-sm mb-1">Atlas for Humanity CIC</h3>
+<p class="text-sm text-gray-600">Enas Elghrouri, Founder</p>
+<p class="text-sm text-gray-600">Email: Enas.elghrouri@atlasforhumanitycic.co.uk</p>
+<p class="text-sm text-gray-600">Phone: 07391505387</p>
+</div>
+<div class="bg-white border rounded-lg p-4 shadow-sm">
+<h3 class="font-bold gold-text text-sm mb-1">UK Visas and Immigration (UKVI) Contact Centre</h3>
+<p class="text-sm text-gray-600">Telephone: 0300 790 6268 — select option 2</p>
+<p class="text-sm text-gray-600">Monday–Thursday (excl. bank holidays): 9:00am–4:45pm</p>
+<p class="text-sm text-gray-600">Friday (excl. bank holidays): 9:00am–4:30pm</p>
+</div>
+<div class="bg-white border rounded-lg p-4 shadow-sm">
+<h3 class="font-bold gold-text text-sm mb-1">Home Office — AHRO Central Communications Hub</h3>
+<p class="text-sm text-gray-600">Email: ahrocentralcommunicationshub@contactus.homeoffice.gov.uk</p>
+</div>
+<div class="bg-white border rounded-lg p-4 shadow-sm">
+<h3 class="font-bold gold-text text-sm mb-1">Home Office Community Surgery (drop-in, no booking needed)</h3>
+<p class="text-sm text-gray-600">Christ Apostolic Church, 217–223 Kingsland Road, London, E2 8AN (near Cambridge Heath / Liverpool Street line)</p>
+<p class="text-sm text-gray-600">Upcoming dates mentioned: 27 August, 24 September, 22 October, 26 November</p>
+<p class="text-sm text-gray-600">Hours: approx. 10:30–10:45am to 3:00pm — arrive early, doors close if it gets busy</p>
+<p class="text-sm text-gray-600">Open to anyone in the community, not just Home Office cases — the venue also runs a food bank</p>
+</div>
+</div>
+</div>
+<div class="max-w-3xl mx-auto mt-10 mb-10">
+<h2 class="text-xl font-bold text-gray-900 border-b pb-2 mb-4">Follow-Up</h2>
+<p class="text-sm text-gray-700 mb-2">Several attendees asked for a follow-up session in around a month to review progress. The organisers and Home Office panel agreed in principle to consider this, and to circulate a written summary of questions, answers and links within about a week of the session.</p>
+<p class="text-sm text-gray-700">For more information, contact Enas Elghrouri, Founder of Atlas for Humanity — Enas.elghrouri@atlasforhumanitycic.co.uk — 07391505387</p>
+</div>
+<p class="text-xs text-gray-400 text-center max-w-3xl mx-auto">Reproduced as stated by Home Office representatives at the session; not legal advice. Individuals should obtain advice from a qualified solicitor or an OISC/Law Society-accredited immigration adviser for their specific circumstances, and consult gov.uk for current rules. Organised by Atlas for Humanity CIC in partnership with a Syrian British consortium.</p>
+</div>
+</div>
+</main>
+<footer class="bg-black text-gray-400 text-sm text-center py-8 px-4 mt-auto">
+  Atlas for Humanity CIC &middot; This record is for general information, not immigration advice.
+</footer>
+<script>
+        const QA_DATA = [
+            {
+                group: "Backlog, Timelines & Accountability",
+                items: [
+                    {
+                        tag: "current", tagLabel: "Current rule",
+                        q: "For nearly two years, very few non-resettlement Syrian SET(P) applicants appear to have received final decisions, despite having submitted applications, responded to Notices of Intent (NOI) and attended interviews. Why has decision-making remained so limited, who is accountable, and who should applicants contact for a clear timetable?",
+                        a: [
+                            "There was a pause on deciding Syrian cases following the fall of the former regime; the panel confirmed this pause has now been lifted. That pause created a backlog which the Home Office is now working through, so decisions are taking longer than normal. The panel could not give a firm timeframe but said they are trying to clear it as quickly as possible.",
+                            "Each case is decided on its own individual merits, not as a block: new country guidance does not mean every Syrian case is automatically refused or automatically approved.",
+                            "The panel did not name a single accountable unit or individual on the call, but said they would take the accountability/contact question back with them. In the meantime, they advised applicants to contact their local MP, who can make enquiries on a constituent's behalf."
+                        ]
+                    },
+                    {
+                        tag: "current", tagLabel: "Current rule",
+                        q: "While an application is pending, is it true that nothing negative can happen — no arrest, detention or removal — as long as the application is outstanding?",
+                        a: [
+                            "Yes. While an application is outstanding, the applicant's prior status continues (if you were lawfully present before applying, you remain lawfully present), and no one will be detained, arrested or removed while a decision is pending.",
+                            "If a decision is eventually made, the applicant will be given the opportunity to appeal or make further applications."
+                        ]
+                    }
+                ]
+            },
+            {
+                group: "Country Guidance, Safety of Return & Individual Merit",
+                items: [
+                    {
+                        tag: "guidance", tagLabel: "General guidance",
+                        q: "How are caseworkers evaluating risk when someone faces localised, non-state threats or personal vulnerability in areas where the transitional authority can't guarantee protection — is it judged only against the general country situation, or is the current, individual situation considered?",
+                        a: [
+                            "Country guidance has changed: Syria is not automatically treated as unsafe for everyone following the fall of the former regime. But the panel stressed every asylum case is still considered on its own individual merits, not as a block.",
+                            "Anyone with a specific, ongoing personal risk should put this in writing to the Home Office, with evidence — this can prompt a further interview. The panel acknowledged the frustration in the question and said they would feed it back to caseworkers and decision-makers, without being able to promise a specific outcome."
+                        ]
+                    }
+                ]
+            },
+            {
+                group: "Refusals, Appeals & Travel While a Decision Is Pending",
+                items: [
+                    {
+                        tag: "current", tagLabel: "Current rule",
+                        q: "If our leave-to-remain / refugee-route application is refused, what happens and what options do we have? Also, if my ILR application is taking a long time, is there an exception that would let me travel urgently for a compassionate reason while it's being decided?",
+                        a: [
+                            "If refused, the applicant has the right to appeal, which the panel would always encourage. The refusal letter itself sets out next steps and appeal deadlines (usually on the second page). Being refused is not the end of the road and doesn't mean removal is automatic.",
+                            "On travel: the general rule is that while an asylum application is pending you cannot leave the UK — if you do, the case is normally treated as withdrawn. It is still worth formally asking the Home Office, via a legal representative, about a specific compassionate or emergency reason, but the panel could not promise this would be granted."
+                        ]
+                    },
+                    {
+                        tag: "guidance", tagLabel: "General guidance",
+                        q: "If my ILR/SET(P) is refused, does the Home Office only look at my initial case, or will they consider my current, present-day situation (years living here, working, paying tax, children in school), given the government's own guidance says Syria isn't safe to return to?",
+                        a: [
+                            "Everything is considered 'in the round': a person's actions and circumstances, not just the original claim. Applicants are encouraged to proactively write to the Home Office and set out any reasons requiring protection beyond the general country situation — this can lead to a further interview.",
+                            "The panel's key advice, repeated several times: <strong>evidence everything</strong> — years of residence, work, tax records, children's schooling, any illness or treatment — because the Home Office \"can't read minds\" and will only weigh what's actually submitted.",
+                            "Even where someone doesn't qualify under the original basis of claim, evidence can support consideration under other routes, for example family and private life or human rights grounds."
+                        ]
+                    }
+                ]
+            },
+            {
+                group: "Switching Immigration Routes",
+                items: [
+                    {
+                        tag: "guidance", tagLabel: "General guidance",
+                        q: "If someone has been in the UK for many years (e.g. 10–11 years, on student then asylum routes) with an application outstanding, can or should they switch to another immigration route, such as skilled worker or spouse visa, instead of waiting?",
+                        a: [
+                            "The panel advised strongly against withdrawing a current application to switch routes without independent legal advice. Withdrawing your existing application immediately puts you in the UK unlawfully until the new application is granted, which is risky.",
+                            "If considering switching, check the gov.uk criteria for the new route first, and speak to a regulated, OISC or Law Society-accredited immigration adviser, not an unregulated one — the panel warned there are many unqualified people giving bad, costly advice."
+                        ]
+                    }
+                ]
+            },
+            {
+                group: "Dependants, Family Applications & Travel Documents",
+                items: [
+                    {
+                        tag: "tbc", tagLabel: "To be confirmed",
+                        q: "My 5-year refugee leave has expired and I submitted my ILR application over 6 months ago (still pending). My wife is now eligible to apply for ILR as my dependant under SET(M)/Appendix FM, but that form has a mandatory field requiring the sponsor's ILR grant date, which I don't have yet. How do I complete this?",
+                        a: [
+                            "The panel said this is a technical scenario they couldn't give a definitive answer to live, and recommended getting advice from a solicitor, who may be able to submit the dependant application with a cover letter explaining the situation rather than leaving the mandatory field blank.",
+                            "They confirmed that where a sponsor's application is still pending, the Home Office can and often does link related family applications together so they are considered and decided as a group. Flagging the link between the cases to the Home Office was recommended as good practice."
+                        ]
+                    },
+                    {
+                        tag: "current", tagLabel: "Current rule",
+                        q: "I'm a refugee doctor on a 5-year residency route; my husband is on a spousal residency linked to my case. We recently had a daughter, and she hasn't been added to my case, so she isn't recognised as a refugee. What travel document can we get for her, and is a Syrian passport legal for her to use?",
+                        a: [
+                            "A dependent child's status generally follows the parent's, so if the child isn't independently a refugee, she can be issued a Syrian passport — this is legal — most straightforwardly applied for through the father if he still holds a valid, non-expired Syrian passport."
+                        ]
+                    },
+                    {
+                        tag: "tbc", tagLabel: "To be confirmed",
+                        q: "My son's ILR application has been pending for over 18 months and he hasn't received a Notice of Intention (NOI) — why not?",
+                        a: [
+                            "The panel said this specific pattern, 18+ months with no NOI at all, didn't sound right to them, and that they would look into it and follow up with an answer via the organisers rather than live on the call.",
+                            "They noted this was their first time engaging directly with the Syrian community and that they weren't previously aware some applicants hadn't received any acknowledgement or NOI after this long."
+                        ]
+                    },
+                    {
+                        tag: "tbc", tagLabel: "To be confirmed",
+                        q: "I submitted my ILR application in November 2024 while undergoing chemotherapy. My medical circumstances don't appear to have been taken into account, and the application has now been pending over 20 months — what more can I do?",
+                        a: [
+                            "The panel expressed sympathy but had no specific mechanism to expedite the case on the call. They encouraged continuing to contact the local MP and said they would take the case back with them, without being able to promise a timeline or outcome."
+                        ]
+                    }
+                ]
+            },
+            {
+                group: "Work Rights",
+                items: [
+                    {
+                        tag: "current", tagLabel: "Current rule",
+                        q: "My ARC card states I'm permitted to work, so I never applied separately for permission to work. Following the recent change (effective 26 March 2026) to the list of eligible occupations for asylum seekers, does my existing ARC permission still stand, or do I now need to follow the new list?",
+                        a: [
+                            "If nothing has been formally changed or communicated to you and your ARC card still says you can work, that permission is still considered valid. Asylum seekers can only work in jobs on the Shortage Occupation List (Appendix J and Appendix K); the recent change affects which jobs are on that list, not the underlying right to work itself, unless you're told otherwise."
+                        ]
+                    }
+                ]
+            },
+            {
+                group: "Driving Licences",
+                items: [
+                    {
+                        tag: "current", tagLabel: "Current rule",
+                        q: "My son is 19, has lived in the UK for 4 years, and cannot get a UK driving licence because he is an asylum seeker. He needs one to travel to university and for work — is there any way around this?",
+                        a: [
+                            "No. This sits outside Home Office control: DVLA rules currently mean asylum seekers cannot obtain a driving licence, and the Home Office cannot change or override that.",
+                            "Once someone is granted refugee status or humanitarian protection, they become eligible to apply for a provisional driving licence. In the meantime, the panel could only point to alternatives like public transport, cycling, or the bus, and acknowledged this wasn't a satisfying answer."
+                        ]
+                    },
+                    {
+                        tag: "current", tagLabel: "Current rule",
+                        q: "Is there really no exception from DVLA theory-test requirements for asylum seekers?",
+                        a: [
+                            "Confirmed no, there is no exception. This is a DVLA and legislative requirement, not a Home Office policy."
+                        ]
+                    }
+                ]
+            },
+            {
+                group: "Education & Student Finance",
+                items: [
+                    {
+                        tag: "current", tagLabel: "Current rule",
+                        q: "I applied to Student Finance England after receiving a university offer; my leave to remain was expiring and I'd already applied to extend it, but Student Finance says my application will be rejected if I don't have a Home Office decision by 1 September — I could miss the whole academic year. My MP couldn't get a different answer. Please help.",
+                        a: [
+                            "The panel was sympathetic but confirmed this is \"the correct procedure\" as things stand — there was no mechanism on the call to accelerate the decision. They pointed to the community surgery as a place to get hands-on help with the case."
+                        ]
+                    }
+                ]
+            },
+            {
+                group: "Communicating with the Home Office",
+                items: [
+                    {
+                        tag: "guidance", tagLabel: "General guidance",
+                        q: "How can we communicate with the Home Office if not through an MP, since MPs are getting standard, near-identical responses?",
+                        a: [
+                            "The panel shared two direct channels during the session: the UKVI phone contact centre, and the AHRO Central Communications Hub email address, both listed in the Contacts section below.",
+                            "Applicants can also use the local community surgery to speak to a Home Office representative in person, continue to use MPs, or submit feedback via the forms shared by the organisers."
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        const QA_TAG_CLASSES = {
+            current: "bg-blue-100 text-blue-700",
+            tbc: "bg-amber-100 text-amber-700",
+            guidance: "bg-green-100 text-green-700"
+        };
+
+        function renderQA() {
+            const topicsEl = document.getElementById('qaTopics');
+            if (!topicsEl || topicsEl.dataset.rendered) return;
+            topicsEl.dataset.rendered = 'true';
+
+            const countLineEl = document.getElementById('qaCountLine');
+            let totalCount = 0;
+            QA_DATA.forEach(g => totalCount += g.items.length);
+            countLineEl.textContent = `Browse ${totalCount} questions`;
+
+            let globalIdx = 0;
+            QA_DATA.forEach(group => {
+                const groupEl = document.createElement('div');
+                groupEl.className = 'qa-topic-group mt-8';
+
+                const heading = document.createElement('h2');
+                heading.className = 'text-xs font-bold uppercase tracking-wide gold-text mb-3 pb-2 border-b-2';
+                heading.style.borderColor = 'var(--gold-light)';
+                heading.textContent = group.group;
+                groupEl.appendChild(heading);
+
+                group.items.forEach(item => {
+                    globalIdx++;
+                    const id = 'qa-item-' + globalIdx;
+                    const details = document.createElement('details');
+                    details.className = 'qa-item bg-white border border-gray-200 rounded-lg mb-3 overflow-hidden';
+                    details.id = id;
+                    details.dataset.searchText = (item.q + ' ' + item.a.join(' ')).toLowerCase();
+
+                    const summary = document.createElement('summary');
+                    summary.className = 'cursor-pointer list-none px-4 py-4 flex gap-3 items-start font-bold text-gray-800';
+                    summary.innerHTML = `<span class="gold-text flex-shrink-0 mt-1">&#9656;</span><span class="flex-1">${item.q}</span><span class="flex-shrink-0 mt-1 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap ${QA_TAG_CLASSES[item.tag]}">${item.tagLabel}</span>`;
+                    details.appendChild(summary);
+
+                    const body = document.createElement('div');
+                    body.className = 'px-4 pb-4 pl-10 text-sm text-gray-600 space-y-2';
+                    item.a.forEach(p => {
+                        const para = document.createElement('p');
+                        para.innerHTML = p;
+                        body.appendChild(para);
+                    });
+                    details.appendChild(body);
+                    groupEl.appendChild(details);
+                });
+
+                topicsEl.appendChild(groupEl);
+            });
+
+            const searchEl = document.getElementById('qaSearch');
+            const noResultsEl = document.getElementById('qaNoResults');
+            searchEl.addEventListener('input', () => {
+                const term = searchEl.value.trim().toLowerCase();
+                let visibleCount = 0;
+
+                document.querySelectorAll('.qa-topic-group').forEach(groupEl => {
+                    let groupHasVisible = false;
+                    groupEl.querySelectorAll('details.qa-item').forEach(d => {
+                        const match = !term || d.dataset.searchText.includes(term);
+                        d.style.display = match ? '' : 'none';
+                        if (match) { groupHasVisible = true; visibleCount++; }
+                        if (term && match) d.open = true;
+                        if (!term) d.open = false;
+                    });
+                    groupEl.style.display = groupHasVisible ? '' : 'none';
+                });
+
+                noResultsEl.classList.toggle('hidden', visibleCount !== 0);
+                countLineEl.textContent = term ? `${visibleCount} of ${totalCount} questions match` : `Browse ${totalCount} questions`;
+            });
+
+            document.getElementById('qaLegendToggle').addEventListener('click', (e) => {
+                const legend = document.getElementById('qaLegend');
+                const open = legend.classList.toggle('hidden');
+                legend.classList.toggle('flex', !open);
+                e.target.textContent = !open ? 'Hide tags' : 'Show tags';
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderQA);
+    </script>
+</body>
+</html>

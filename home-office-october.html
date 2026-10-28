@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Office × Syrian Community Q&amp;A: 1 October 2026</title>
+<meta name="description" content="A searchable record of the 1 October 2026 Home Office community Q&amp;A session organised by Atlas for Humanity CIC in partnership with the Syrian British Consortium.">
+<style>
+  :root {
+    --bg: #fbf9f5;
+    --panel: #ffffff;
+    --ink: #22201c;
+    --ink-soft: #5b564d;
+    --line: #e6e1d6;
+    --rust: #b5502e;
+    --rust-soft: #f3e2da;
+    --olive: #6f7a4f;
+    --olive-soft: #e7ecdd;
+    --slate: #566572;
+    --slate-soft: #e2e8ec;
+    --sand: #a4884f;
+    --sand-soft: #f1e7d3;
+    --plum: #7a5571;
+    --plum-soft: #efe4ec;
+    --focus: #1c5f8a;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, "Noto Naskh Arabic", serif;
+    line-height: 1.55;
+  }
+  a { color: var(--focus); }
+  a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+  }
+  .skip-link { position: absolute; left: -999px; top: auto; }
+  .skip-link:focus { left: 1rem; top: 1rem; background: var(--panel); padding: 0.5rem 1rem; border-radius: var(--radius); z-index: 10; }
+
+  header.masthead { border-bottom: 1px solid var(--line); padding: 2.5rem 1.5rem 2rem; max-width: 860px; margin: 0 auto; }
+  .eyebrow { font-family: "Helvetica Neue", Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.72rem; color: var(--rust); font-weight: 600; margin-bottom: 0.9rem; }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin: 0 0 0.9rem; letter-spacing: -0.01em; }
+  .meta-line { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 0.92rem; color: var(--ink-soft); margin-bottom: 1rem; }
+  .meta-line strong { color: var(--ink); }
+  .lede { font-size: 1.05rem; color: var(--ink-soft); max-width: 62ch; }
+  .prev-link { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 0.9rem; margin-top: 0.6rem; }
+
+  .warning { max-width: 812px; margin: 1.75rem auto 0; padding: 1.1rem 1.3rem; background: var(--rust-soft); border: 1px solid #e3bda9; border-radius: var(--radius); font-family: "Helvetica Neue", Arial, sans-serif; font-size: 0.92rem; display: flex; gap: 0.7rem; }
+  .warning .icon { font-size: 1.1rem; line-height: 1.3; }
+  .warning strong { color: var(--rust); }
+  @media (max-width: 860px) { .warning { margin-left: 16px; margin-right: 16px; } }
+
+  main { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .controls { position: sticky; top: 0; background: var(--bg); padding: 1rem 0; z-index: 5; border-bottom: 1px solid var(--line); }
+  .search-row { display: flex; gap: 0.6rem; align-items: center; }
+  #search { flex: 1; min-width: 0; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 1rem; padding: 0.65rem 0.9rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); color: var(--ink); }
+  .legend-toggle { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 0.82rem; background: none; border: 1px solid var(--line); border-radius: var(--radius); padding: 0.6rem 0.9rem; cursor: pointer; color: var(--ink-soft); white-space: nowrap; }
+  .legend { display: none; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 0.78rem; }
+  .legend.open { display: flex; }
+
+  .tag { display: inline-block; padding: 0.22rem 0.6rem; border-radius: 999px; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.01em; white-space: nowrap; }
+  .tag-current { background: var(--slate-soft); color: var(--slate); }
+  .tag-guidance { background: var(--olive-soft); color: var(--olive); }
+  .tag-tbc { background: var(--sand-soft); color: #8a6a1f; }
+  .tag-notcovered { background: var(--plum-soft); color: var(--plum); }
+
+  .count-line { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 0.85rem; color: var(--ink-soft); margin: 1.4rem 0 0.6rem; }
+  .topic-group { margin-top: 2.2rem; }
+  .topic-heading { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--rust); font-weight: 700; margin: 0 0 0.9rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--rust-soft); }
+
+  details.qa { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: 0.75rem; overflow: hidden; }
+  details.qa[open] summary { border-bottom: 1px solid var(--line); }
+  summary.q-summary { cursor: pointer; list-style: none; padding: 0.95rem 1.1rem; display: flex; gap: 0.8rem; align-items: flex-start; font-weight: 600; font-size: 1rem; }
+  summary.q-summary::-webkit-details-marker { display: none; }
+  summary.q-summary .caret { font-family: "Helvetica Neue", Arial, sans-serif; color: var(--rust); flex-shrink: 0; margin-top: 0.15rem; transition: transform 0.15s ease; }
+  details[open] summary.q-summary .caret { transform: rotate(90deg); }
+  summary.q-summary .q-text { flex: 1; min-width: 0; }
+  summary.q-summary .tag { margin-top: 0.2rem; flex-shrink: 0; }
+  @media (max-width: 560px) {
+    summary.q-summary { flex-wrap: wrap; }
+    summary.q-summary .q-text { flex: 1 1 calc(100% - 2rem); }
+    summary.q-summary .tag { margin-left: 1.6rem; margin-top: 0; }
+  }
+  .a-body { padding: 0.2rem 1.1rem 1.1rem 2.5rem; color: var(--ink-soft); font-size: 0.98rem; }
+  @media (max-width: 560px) { .a-body { padding-left: 1.1rem; } }
+  .a-body p { margin: 0.6rem 0; }
+  .a-body strong { color: var(--ink); }
+  .a-body .note { display: block; background: var(--sand-soft); border-left: 3px solid var(--sand); padding: 0.6rem 0.8rem; border-radius: 6px; font-size: 0.92rem; }
+  .a-body .note strong { color: #6e551a; }
+  .anchor-link { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 0.78rem; display: inline-block; margin-top: 0.5rem; }
+
+  .no-results { display: none; color: var(--ink-soft); font-family: "Helvetica Neue", Arial, sans-serif; padding: 2rem 0; text-align: center; }
+  .no-results.show { display: block; }
+
+  .key-messages { margin-top: 3rem; padding: 1.6rem 1.5rem; background: var(--olive-soft); border-radius: var(--radius); }
+  .key-messages h2 { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--olive); margin: 0 0 0.9rem; }
+  .key-messages p { margin: 0.7rem 0; }
+
+  .feedback-section, .links-section, .contacts, .followup { margin-top: 2.8rem; }
+  .feedback-section h2, .contacts h2, .links-section h2, .followup h2 { font-size: 1.15rem; border-bottom: 1px solid var(--line); padding-bottom: 0.5rem; }
+  .feedback-section ul, .links-section ul { padding-left: 1.2rem; }
+  .feedback-section li, .links-section li { margin: 0.5rem 0; word-break: break-word; }
+  .section-intro { color: var(--ink-soft); font-size: 0.95rem; }
+
+  .contact-block { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem 1.2rem; margin-bottom: 0.8rem; font-size: 0.94rem; }
+  .contact-block h3 { margin: 0 0 0.4rem; font-size: 0.95rem; font-family: "Helvetica Neue", Arial, sans-serif; color: var(--rust); }
+  .contact-block p { margin: 0.25rem 0; color: var(--ink-soft); word-break: break-word; }
+
+  footer.page-footer { max-width: 860px; margin: 3rem auto 0; padding: 1.5rem; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 0.82rem; color: var(--ink-soft); border-top: 1px solid var(--line); }
+  @media (max-width: 600px) {
+    header.masthead, main, footer.page-footer { padding-left: 16px; padding-right: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  @media print {
+    .controls, .anchor-link, .skip-link { display: none !important; }
+    details.qa { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+<header class="masthead">
+  <div class="eyebrow">Community engagement record</div>
+  <h1>Home Office × Syrian Community Q&amp;A</h1>
+  <div class="meta-line">
+    <strong>Session:</strong> Thursday 1 October 2026, 7pm UK, online &nbsp;·&nbsp;
+    <strong>Organised by:</strong> Atlas for Humanity CIC × Syrian British Consortium &nbsp;·&nbsp;
+    <strong>Panel:</strong> Home Office National Community Engagement Team &amp; Immigration Enforcement Safeguarding
+  </div>
+  <p class="prev-link">Questions from earlier sessions: <a href="https://agent-6a776ab957c8590--atlasforhumanityhomeoffic.netlify.app/" target="_blank" rel="noopener">previous Home Office Q&amp;A record</a></p>
+</header>
+
+<div class="warning">
+  <span class="icon">⚠</span>
+  <div>
+    <strong>This is not immigration advice.</strong> Neither the Home Office, Atlas for Humanity CIC nor the Syrian British Consortium provided legal advice at this session. It is a record of one community session, shared for general awareness only, and reflects the rules as they stood on 1 October 2026. For your own situation, speak to a regulated immigration adviser (Immigration Advice Authority) or a solicitor, and check <strong>gov.uk</strong> for current rules.
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="controls">
+    <div class="search-row">
+      <input type="text" id="search" placeholder="Search questions and answers…" aria-label="Search questions and answers">
+      <button class="legend-toggle" id="legendToggle" aria-expanded="false">Show tags</button>
+    </div>
+    <div class="legend" id="legend">
+      <span class="tag tag-current">Current rule</span>
+      <span class="tag tag-guidance">General guidance</span>
+      <span class="tag tag-tbc">To be confirmed</span>
+      <span class="tag tag-notcovered">Not answered in session</span>
+    </div>
+  </div>
+
+  <p class="count-line" id="countLine"></p>
+  <div id="topics"></div>
+  <p class="no-results" id="noResults">No questions match your search. Try a different term.</p>
+
+  <section class="key-messages">
+    <h2>Key recurring messages from the session</h2>
+    <p><strong>The panel cannot influence individual cases</strong> and cannot comment on newly announced government proposals until they have gone through the legislative process. They can take community feedback back to the right Home Office teams and signpost people to help.</p>
+    <p><strong>Tell the Home Office everything.</strong> Caseworkers only know what you send them. Keep your application updated with any change in your circumstances, your studies, work and life in the UK, ideally in a cover letter quoting your Home Office reference.</p>
+    <p><strong>Every case is considered on its own merits</strong>, not by nationality. The pause on Syrian decisions has ended, but the backlog it created, the reviews linked to the change in Syria and the need for legal advice mean decisions are slow.</p>
+    <p><strong>Use your MP.</strong> If a complaint to the Home Office does not resolve a delay, your MP can raise it directly and can refer it to the Parliamentary and Health Service Ombudsman.</p>
+    <p><strong>If you are refused, appeal on time.</strong> The appeal is heard by an independent tribunal, not the Home Office, and it supersedes a reconsideration request. Check the deadline in your refusal letter.</p>
+    <p><strong>Only use regulated advisers.</strong> The panel regularly sees people who paid someone who never submitted an application. Use the official adviser search, and use a Home Office surgery to check whether an application actually exists.</p>
+  </section>
+
+  <section class="feedback-section">
+    <h2>Community concerns raised for the Home Office</h2>
+    <p class="section-intro">These points were raised by attendees as feedback rather than questions with a direct answer. The panel said it would take the community's concerns back to the relevant teams.</p>
+    <ul>
+      <li>Very few decisions appear to have been made on Syrian settlement (ILR) applications since the pause was lifted, and attendees asked for published figures on processing times and numbers decided.</li>
+      <li>Applicants report receiving identical standard updates ("exceptionally complex issues", "passed to another government department for further checks") every six months, which feels like a blanket approach despite the assurance that each case is considered individually.</li>
+      <li>Current UK travel advice warns British nationals against travel to Syria for security reasons, while refusals for Syrians rely on Syria being safe to return to. Attendees asked how these two positions are reconciled.</li>
+      <li>As the pause was not the applicants' fault, attendees asked for the backlog to be cleared in chronological order of application, or for an exceptional solution.</li>
+      <li>Long waits are affecting careers and education: for example, an NHS doctor whose access to specialty training is limited without ILR, and young people unable to plan university study or afford international fees.</li>
+      <li>Some older applicants without digital skills or English rely on intermediaries and have little visibility of their applications.</li>
+      <li>Loss of access to eVisa share codes while settlement applications are pending is affecting people's right to work and right to rent checks.</li>
+    </ul>
+  </section>
+
+  <section class="links-section">
+    <h2>Useful links</h2>
+    <ul>
+      <li>Home Office complaints procedure (shared by the panel): <a href="https://www.gov.uk/government/organisations/home-office/about/complaints-procedure" target="_blank" rel="noopener">gov.uk/government/organisations/home-office/about/complaints-procedure</a></li>
+      <li>Parliamentary and Health Service Ombudsman (referral must come through your MP): <a href="https://www.ombudsman.org.uk/" target="_blank" rel="noopener">ombudsman.org.uk</a></li>
+      <li>Find your MP: <a href="https://members.parliament.uk/FindYourMP" target="_blank" rel="noopener">members.parliament.uk/FindYourMP</a></li>
+      <li>Find a regulated immigration adviser (shared by the panel): <a href="https://www.gov.uk/find-an-immigration-adviser/search-for-an-adviser" target="_blank" rel="noopener">gov.uk/find-an-immigration-adviser/search-for-an-adviser</a></li>
+      <li>Contact UK Visas and Immigration, including eVisa and share code problems: <a href="https://www.gov.uk/contact-ukvi-inside-outside-uk" target="_blank" rel="noopener">gov.uk/contact-ukvi-inside-outside-uk</a></li>
+      <li>eVisas and proving your status: <a href="https://www.gov.uk/evisa" target="_blank" rel="noopener">gov.uk/evisa</a></li>
+      <li>Contact the Home Office (including writing to the Home Secretary's office): <a href="https://www.gov.uk/guidance/contact-the-home-office" target="_blank" rel="noopener">gov.uk/guidance/contact-the-home-office</a></li>
+      <li>Settlement protection guidance, including the safe return review (organiser addition): <a href="https://www.gov.uk/government/publications/settlement-protection-asylum-policy-instruction" target="_blank" rel="noopener">gov.uk/government/publications/settlement-protection-asylum-policy-instruction</a></li>
+      <li>Syria country policy and information notes (organiser addition): <a href="https://www.gov.uk/government/publications/syria-country-policy-and-information-notes" target="_blank" rel="noopener">gov.uk/government/publications/syria-country-policy-and-information-notes</a></li>
+      <li>Leave outside the Immigration Rules, caseworker guidance (organiser addition): <a href="https://www.gov.uk/government/publications/chapter-1-section-14-leave-outside-the-immigration-rules" target="_blank" rel="noopener">gov.uk/government/publications/chapter-1-section-14-leave-outside-the-immigration-rules</a></li>
+      <li>Immigration Rules Appendix Private Life (organiser addition): <a href="https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-private-life" target="_blank" rel="noopener">gov.uk/guidance/immigration-rules/immigration-rules-appendix-private-life</a></li>
+      <li>Immigration Rules Appendix Long Residence (organiser addition): <a href="https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-long-residence" target="_blank" rel="noopener">gov.uk/guidance/immigration-rules/immigration-rules-appendix-long-residence</a></li>
+      <li>Eligible jobs for the Skilled Worker route (organiser addition): <a href="https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-skilled-occupations" target="_blank" rel="noopener">gov.uk/guidance/immigration-rules/immigration-rules-appendix-skilled-occupations</a></li>
+      <li>Appeal to the First-tier Tribunal (Immigration and Asylum): <a href="https://www.gov.uk/immigration-asylum-tribunal" target="_blank" rel="noopener">gov.uk/immigration-asylum-tribunal</a></li>
+      <li>Q&amp;A records from previous Home Office sessions: <a href="https://agent-6a776ab957c8590--atlasforhumanityhomeoffic.netlify.app/" target="_blank" rel="noopener">Atlas for Humanity Home Office Q&amp;A</a></li>
+    </ul>
+  </section>
+
+  <section class="contacts">
+    <h2>Contacts</h2>
+
+    <div class="contact-block">
+      <h3>Atlas for Humanity CIC</h3>
+      <p>Enas Elghrouri, Founder</p>
+      <p>Email: <a href="mailto:Enas.elghrouri@atlasforhumanitycic.co.uk">Enas.elghrouri@atlasforhumanitycic.co.uk</a></p>
+      <p>Phone: 07391 505387</p>
+      <p>Safeguarding concerns or questions for the panel can be sent to the organisers, who will pass them to the Home Office team.</p>
+    </div>
+
+    <div class="contact-block">
+      <h3>Syrian British Consortium</h3>
+      <p>Soha Alakraa, Advocacy Coordinator</p>
+    </div>
+
+    <div class="contact-block">
+      <h3>Home Office community surgery: Rochdale (Greater Manchester)</h3>
+      <p>Nigerian Community Association Rochdale, 58 Drake Street, Rochdale, OL16 1PA</p>
+      <p>Phone: 07256 136150</p>
+      <p>Open to all nationalities, not only Nigerian nationals. The surgery restarted in late September 2026.</p>
+    </div>
+
+    <div class="contact-block">
+      <h3>Home Office community surgery: London (drop-in, no booking needed)</h3>
+      <p>Christ Apostolic Church, 217–223 Kingsland Road, London, E2 8AN</p>
+      <p>Hours: approx. 10:30am to 3:00pm. Arrive early, as doors close if it gets busy.</p>
+      <p>Open to anyone in the community. Please contact the organisers for the next confirmed dates.</p>
+    </div>
+
+    <div class="contact-block">
+      <h3>UK Visas and Immigration (UKVI) contact centre</h3>
+      <p>Telephone: 0300 790 6268 (from abroad or if you cannot call 0300 numbers: +44 203 875 4669)</p>
+      <p>Handles eVisa issues including sharing your status and correcting errors. Check <a href="https://www.gov.uk/contact-ukvi-inside-outside-uk" target="_blank" rel="noopener">gov.uk/contact-ukvi-inside-outside-uk</a> for current menu options and opening hours.</p>
+    </div>
+  </section>
+
+  <section class="followup">
+    <h2>Follow-up</h2>
+    <p>The panel said that any questions it could not answer on the call would be taken back to the relevant teams, with responses shared through the organisers. Community feedback on Syrian settlement delays, applicant updates and eVisa share codes has been passed on.</p>
+    <p>This was the fifth Home Office community session hosted by Atlas for Humanity CIC. Further sessions will be announced through Atlas for Humanity and the Syrian British Consortium.</p>
+    <p>For more information, contact Enas Elghrouri, Founder of Atlas for Humanity CIC: <a href="mailto:Enas.elghrouri@atlasforhumanitycic.co.uk">Enas.elghrouri@atlasforhumanitycic.co.uk</a>, 07391 505387.</p>
+  </section>
+</main>
+
+<footer class="page-footer">
+  Answers are reproduced as given by Home Office representatives at the session and summarised for clarity; organiser notes are marked separately. This is not legal advice. Individuals should obtain advice from a qualified solicitor or an Immigration Advice Authority (IAA) regulated adviser for their specific circumstances, and consult gov.uk for current rules. Attendee names and personal case details have been removed.<br><br>
+  Organised by Atlas for Humanity CIC in partnership with the Syrian British Consortium.
+</footer>
+
+<script>
+const DATA = [
+  {
+    group: "About the Session and the Panel's Role",
+    items: [
+      {
+        tag: "guidance", tagLabel: "General guidance",
+        q: "Can the Home Office comment on recently announced government proposals?",
+        a: [
+          "No. The panel are civil servants, not the government, and work under a code of conduct that requires them to stay impartial and politically neutral. They can only speak about what is already in the public domain.",
+          "When a minister announces a proposal, it has to go through the necessary process, sometimes including Parliament and other legislative steps, before civil servants write the process for it. So it is not possible to say how, or when, a proposal will be implemented. For example, a recently announced resettlement programme was said to start around the end of the year, but this cannot be confirmed."
+        ]
+      },
+      {
+        tag: "guidance", tagLabel: "General guidance",
+        q: "What happened to the feedback from previous sessions? Were any actions proposed?",
+        a: [
+          "The panel does not propose actions, as they work for the government, but they do pass on insights. After the last session they fed back the community's concerns about how long Syrian applications are taking, and said that if an application is taking a long time, applicants need to be kept updated, otherwise people become frustrated and very worried.",
+          "The panel members also held a separate meeting on this because they were touched by the feedback received last time, and have fed it back to the people who need to hear it. They cannot force any team to implement changes.",
+          "Answers to many questions raised in earlier sessions are in the <a href=\"https://agent-6a776ab957c8590--atlasforhumanityhomeoffic.netlify.app/\" target=\"_blank\" rel=\"noopener\">Q&amp;A records from previous sessions</a>."
+        ]
+      }
+    ]
+  },
+  {
+    group: "Syrian Settlement (ILR) Applications and Delays",
+    items: [
+      {
+        tag: "guidance", tagLabel: "General guidance",
+        q: "Why are Syrian settlement applications taking so long, and what does it mean when my application has been 'passed to another government department for further checks' or to the Status Review Unit?",
+        a: [
+          "There was a pause on decisions for Syrian applications, which has now been lifted. (Attendees described the pause as running from December 2024, with decisions resuming around November to December 2025.) The pause created a large backlog which the Home Office is working through slowly, and some decisions, on both older and newer applications, have been made.",
+          "Applications are being reviewed because of the substantial change in Syria. When this happens the Home Office sometimes takes legal advice, which, like any legal advice, takes a long time. The panel also said the status review team is quite small, so this is a large operation and cases are dealt with in a queue. Sometimes information has to be requested from other departments or countries, which is part of why some cases take longer than others.",
+          "Any official next steps will be published. The panel said it understands the frustration but cannot give more clarity than this."
+        ]
+      },
+      {
+        tag: "guidance", tagLabel: "General guidance",
+        q: "Other nationalities appear to get ILR decisions quickly, while a relatively small number of Syrian applications have been waiting more than a year and a half. Is the Home Office dealing with cases by nationality, and what can be done?",
+        a: [
+          "The Home Office does not deal with asylum or ILR cases by nationality; that would not be fair on other applicants. Each case is considered on its own merits. Some people from other nationalities may receive decisions faster, but that does not mean everyone from that nationality does, and some Syrians have received decisions.",
+          "Timing depends on many factors, including which casework team holds the application, where the person is located and the pressures on that team. Casework teams are stretched and resources are not infinite.",
+          "The panel acknowledged \"there are faces behind these cases\" and said it will feed back the community's frustration about waiting times to the people who need to know."
+        ]
+      },
+      {
+        tag: "current", tagLabel: "Current rule",
+        q: "Is every Syrian applicant sent a notice of intent or put through a safe return review just for being Syrian, or are the material facts of the original asylum claim considered? For example, if protection was granted on a Convention ground unrelated to the former government?",
+        a: [
+          "Each case is considered on its own merits; nationality alone does not lead to a blanket response. Previously, being Syrian alone may have been enough for a grant of refugee protection; now that may not be the case, so the other material facts of the case are considered, such as political opinion, membership of a particular social group, sexual orientation or religion.",
+          "Everything is considered in the round, in line with Home Office policy, the Refugee Convention and UNHCR guidance. Nationality is just one part of it. The panel confirmed that the material facts of the original asylum claim count, as they do for every asylum claim.",
+          "<span class=\"note\"><strong>Organiser note:</strong> the published Settlement Protection guidance (version 6.0, January 2026) states that a safe return review is carried out on every application for settlement on a protection route. The review looks at whether the reasons for protection still apply to the individual. See <a href=\"https://www.gov.uk/government/publications/settlement-protection-asylum-policy-instruction\" target=\"_blank\" rel=\"noopener\">the settlement protection guidance on gov.uk</a>.</span>"
+        ]
+      },
+      {
+        tag: "tbc", tagLabel: "To be confirmed",
+        q: "There is plenty of public information about asylum screening, interviews and decisions, but very little about safe return reviews. Where can we find out how they work and what is considered?",
+        a: [
+          "The panel could not comment on internal processes and said it was not aware of any specific published guidance at the moment. The National Community Engagement Team often receives updates from Home Office teams before they are released, and will share relevant information with its networks when it is able to.",
+          "<span class=\"note\"><strong>Organiser note:</strong> the <a href=\"https://www.gov.uk/government/publications/settlement-protection-asylum-policy-instruction\" target=\"_blank\" rel=\"noopener\">Settlement Protection asylum policy instruction</a> on gov.uk includes a section on the safe return review, covering changes in country conditions, changes in personal circumstances, travel to the country of origin and obtaining a national passport. The <a href=\"https://www.gov.uk/government/publications/syria-country-policy-and-information-notes\" target=\"_blank\" rel=\"noopener\">Syria country policy and information notes</a> set out the Home Office's current assessment of conditions in Syria.</span>"
+        ]
+      },
+      {
+        tag: "guidance", tagLabel: "General guidance",
+        q: "Why is no consideration given to the lives Syrian refugees have built in Britain, for example as graduates of British universities, rather than focusing only on the risk on return?",
+        a: [
+          "There is no blanket way of dealing with asylum cases; everybody's case is different. Not everyone is losing their status. Some people keep protection because of the basis on which they claimed: if someone claimed on a basis that no longer exists, they may lose it, while someone who claimed on a different basis may not. A few people are going through reviews, but not everyone is losing their status.",
+          "On personal circumstances: if you don't tell the Home Office, they will not know. Include everything in your application. Some people write a full cover letter setting out their credentials, what they bring to the UK, the life they have built and what they do for their community. The way the application is made determines whether that information is available to the caseworker."
+        ]
+      },
+      {
+        tag: "guidance", tagLabel: "General guidance",
+        q: "Every few months I receive a standard message saying my application 'raises exceptionally complex issues', and I cannot reply to it. How can I find out what those issues are?",
+        a: [
+          "You can write to the Home Office to ask what the complex issues are. You do not need to know your caseworker's name: quoting your Home Office reference number will make sure the letter reaches your caseworker.",
+          "Keep updating the Home Office with anything that changes in your circumstances, however small it may seem. The more up-to-date information you give, the less anyone can say they did not know about it."
+        ]
+      },
+      {
+        tag: "guidance", tagLabel: "General guidance",
+        q: "How is safeguarding taken into account for people who survived torture, war and displacement and have now been waiting one or two years for an ILR decision?",
+        a: [
+          "The safeguarding lead explained that she does not work in asylum and cannot comment on why individual cases are taking so long or what the outcome will be. She noted that, while the pause was very frustrating and stressful, not making decisions during a time of great change in Syria was arguably a good thing; decisions are now being made as the situation and the law develop.",
+          "Her advice was to keep updating the Home Office with any changes, so the full picture is on file."
+        ]
+      },
+      {
+        tag: "guidance", tagLabel: "General guidance",
+        q: "What criteria does the Home Office use to decide settlement for Palestinian Syrians?",
+        a: [
+          "There is no separate list of criteria, because everybody's case is different. The core test is whether you have a well-founded fear of persecution. How you demonstrate that is through how your application is made, including any cover letter, and through the interviews, where caseworkers ask detailed questions to gather all the information."
+        ]
+      },
+      {
+        tag: "guidance", tagLabel: "General guidance",
+        q: "Do ILR caseworkers have targets or performance metrics, and what happens if they miss them? Is the team understaffed?",
+        a: [
+          "Caseworker targets and metrics are an internal process and are not discussed on public platforms. The panel also does not work in asylum, so it would be unfair to comment on another department. The panel noted that the old six-month timeframe for asylum decisions no longer applies.",
+          "On resourcing: the Home Office has a lot of caseworkers, but the number of arrivals is unprecedented (figures of several hundred, and up to around 1,000, people a day were mentioned). New caseworkers have to be trained for months or even years because asylum casework is complex, and recruitment is limited by office space and resources. This is part of why the government is working to reduce arrivals."
+        ]
+      },
+      {
+        tag: "current", tagLabel: "Current rule",
+        q: "We applied for settlement this summer. Our leave has since expired and my daughter's travel document expired with it. She has a compulsory school exchange trip abroad next spring. Can we expect a decision before then?",
+        a: [
+          "The panel could not say when a decision will be made; it is not possible to give a timeframe for individual applications."
+        ]
+      }
+    ]
+  },
+  {
+    group: "Switching Routes and Other Options",
+    items: [
+      {
+        tag: "guidance", tagLabel: "General guidance",
+        q: "Is there any plan to allow refugees to switch to a work visa without losing the time spent on refugee status towards ILR?",
+        a: [
+          "The panel was not aware of any such plan. The official Home Office position is that anyone considering a different route, for example once their protection status runs out, should do their research and consult a solicitor or regulated immigration adviser, who can look at their specific circumstances. Find one here: <a href=\"https://www.gov.uk/find-an-immigration-adviser/search-for-an-adviser\" target=\"_blank\" rel=\"noopener\">gov.uk/find-an-immigration-adviser/search-for-an-adviser</a>.",
+          "Be careful not to switch to a route that leaves you in a more precarious position. For example, on a sponsored work route, if your sponsor withdraws sponsorship your leave could be curtailed, whereas waiting a little longer may be safer. Switching also costs a lot of money, so it is only worthwhile if you are confident it is the right route.",
+          "On counting time: if both the old and new routes count towards ILR, the time continues to count. If one does not, it will not. For example, time as a student does not count; time on the Skilled Worker or Global Talent routes does."
+        ]
+      },
+      {
+        tag: "current", tagLabel: "Current rule",
+        q: "If my ILR application on the protection route is refused, will the Home Office automatically consider other routes, such as family or private life under Article 8? Would I need to withdraw my application, and would my years in the UK count?",
+        a: [
+          "When an <strong>asylum</strong> claim is refused, the Home Office considers all routes by default, including Article 8, discretionary leave and humanitarian protection. For <strong>ILR</strong> applications that is not always the case: the person is considered only for ILR. If someone wants to apply on Article 8 or discretionary leave grounds, a separate application has to be made, and there may be a fee.",
+          "The panel cannot predict whether any new or alternative routes will be offered in future. Their personal advice was to wait for the outcome of your current application before making any decision, because if it is refused you will normally have a right of appeal. In the meantime, speak to a good, qualified lawyer who can look at your whole family situation and identify the best application, including routes you may not know you are eligible for. The panel shared the official adviser search, where you can enter your postcode to find regulated advisers, some of them free: <a href=\"https://www.gov.uk/find-an-immigration-adviser/search-for-an-adviser\" target=\"_blank\" rel=\"noopener\">gov.uk/find-an-immigration-adviser/search-for-an-adviser</a>.",
+          "<span class=\"note\"><strong>Organiser note:</strong> the question of whether earlier years would count towards a different route was not answered specifically; please take advice on your own circumstances.</span>"
+        ]
+      },
+      {
+        tag: "guidance", tagLabel: "General guidance",
+        q: "Do people with British PhDs or master's degrees, university teachers or high earners get any exception or faster route to permanent residence?",
+        a: [
+          "Holding a PhD or other qualification does not by itself give you leave to remain. If you feel you fall into a particular category, you can make an application. The Skilled Worker route has lists of eligible jobs and salary requirements; if you qualify for and obtain a job on those lists, you can apply in that capacity. A PhD can give you an advantage, but you still have to make an application on a route that fits."
+        ]
+      },
+      {
+        tag: "guidance", tagLabel: "General guidance",
+        q: "What is discretionary leave?",
+        a: [
+          "Discretionary leave is a period of leave outside the Immigration Rules. The panel also shared the official link to find a regulated immigration adviser: <a href=\"https://www.gov.uk/find-an-immigration-adviser/search-for-an-adviser\" target=\"_blank\" rel=\"noopener\">gov.uk/find-an-immigration-adviser/search-for-an-adviser</a>.",
+          "<span class=\"note\"><strong>Organiser note:</strong> see the Home Office caseworker guidance on <a href=\"https://www.gov.uk/government/publications/chapter-1-section-14-leave-outside-the-immigration-rules\" target=\"_blank\" rel=\"noopener\">leave outside the Immigration Rules</a>.</span>"
+        ]
+      },
+      {
+        tag: "guidance", tagLabel: "General guidance",
+        q: "Would buying a house with a mortgage count positively under the integration criteria for ILR?",
+        a: [
+          "No. In the earlier session where the proposed earned settlement model was presented, owning a home or having a mortgage was not mentioned as a factor. The two main factors discussed were English language skills and earnings.",
+          "<span class=\"note\"><strong>Organiser note:</strong> the earned settlement model was a consultation proposal at the time of that session. Check gov.uk for the rules that apply when you apply.</span>"
+        ]
+      }
+    ]
+  },
+  {
+    group: "Passports and Travel",
+    items: [
+      {
+        tag: "current", tagLabel: "Current rule",
+        q: "Are Syrian asylum seekers or refugees allowed to use their valid national passport?",
+        a: [
+          "Anyone who has an asylum claim pending cannot leave the UK until a decision is made, and the Home Office will usually hold their passport until then. So an asylum seeker would not be able to use their passport.",
+          "If refugee status is granted, the passport is returned. Refugees can generally use it to travel, but may not be able to return to the country they are receiving protection from."
+        ]
+      }
+    ]
+  },
+  {
+    group: "Refusals, Appeals and Reconsideration",
+    items: [
+      {
+        tag: "guidance", tagLabel: "General guidance",
+        q: "Our family's claim was refused after waiting more than three years, and the long uncertainty has affected education and university plans. What can we do?",
+        a: [
+          "Speak to your lawyer and put in a strong appeal. Appeals are independent of the Home Office: they are heard by the tribunal under the Ministry of Justice, with the Home Office on one side and the appellant on the other. If you believe a refusal is wrong, the court can see that too, and the panel noted that community members have reported many appeals succeeding.",
+          "The appeal process exists to challenge Home Office decisions, so do not lose hope. If the appeal goes to a hearing, consider giving evidence in person so the judge can hear your story directly.",
+          "Please do not share personal case details in public sessions."
+        ]
+      },
+      {
+        tag: "guidance", tagLabel: "General guidance",
+        q: "After a refusal, should I request a reconsideration or lodge an appeal? The Home Office says it cannot look at a reconsideration request while an appeal is pending, and there may not be time for both.",
+        a: [
+          "Reconsideration is an internal Home Office process: you ask the Home Office to look at the case again because you believe the law was not applied properly, or because something has changed since the decision. There are quality assurance measures across casework teams, but decisions can occasionally be incorrect.",
+          "An appeal is much bigger: a separate part of the justice system looks at everything in the round and may hear from you in person. The appeal process supersedes reconsideration, and you cannot run both at once. One panel member's personal view was that, if choosing one, you should formally appeal, because if you miss the appeal deadline (he mentioned 14 days) you could lose that chance.",
+          "Even though the appeal backlog is long, the panel's message was clear: do not give up the chance to appeal, and lodge it in good time. A qualified legal adviser can explain the options for your case.",
+          "<span class=\"note\"><strong>Organiser note:</strong> your refusal letter states the exact deadline for appealing in your case. Check it as soon as you receive the decision.</span>"
+        ]
+      }
+    ]
+  },
+  {
+    group: "Complaints and Escalation",
+    items: [
+      {
+        tag: "current", tagLabel: "Current rule",
+        q: "How can I escalate my complaint about the delay in my case from stage one to stage two?",
+        a: [
+          "If you are dissatisfied with a decision or the length of time you have been waiting, you have the right to complain. The complaint goes through stage one and then stage two, after which the Home Office gives a final response. The Home Office normally aims to respond within 20 days, although it can take longer if something needs investigating. If you have waited longer than that, contact the Home Office to check where your complaint is.",
+          "If you remain dissatisfied, contact your Member of Parliament. MPs have a strong voice and can contact the Home Office directly; if they believe your case has grounds, they can refer it to the Parliamentary and Health Service Ombudsman on your behalf. The referral has to go through your MP. You can find your MP at <a href=\"https://members.parliament.uk/FindYourMP\" target=\"_blank\" rel=\"noopener\">members.parliament.uk/FindYourMP</a>.",
+          "<span class=\"note\"><strong>Organiser note:</strong> the <a href=\"https://www.gov.uk/government/organisations/home-office/about/complaints-procedure\" target=\"_blank\" rel=\"noopener\">Home Office complaints procedure</a> says it aims to reply within 20 working days, and that if you are still unhappy you can ask for your complaint to be passed to a more senior member of staff.</span>"
+        ]
+      },
+      {
+        tag: "current", tagLabel: "Current rule",
+        q: "My ILR application has not been decided for more than 24 months. I have contacted my MP several times and raised an internal complaint through the Home Office website. What is the next step? Can the Ombudsman help?",
+        a: [
+          "You can continue to raise this through your MP; there are Home Office teams whose job is to engage with MPs, so this is a strong route. Follow the Home Office's internal complaints procedure (stage one, then stage two). If you remain unsatisfied, you can ask your MP to refer your case to the <a href=\"https://www.ombudsman.org.uk/\" target=\"_blank\" rel=\"noopener\">Parliamentary and Health Service Ombudsman</a>. Guidance: <a href=\"https://www.gov.uk/government/organisations/home-office/about/complaints-procedure\" target=\"_blank\" rel=\"noopener\">Home Office complaints procedure</a>."
+        ]
+      },
+      {
+        tag: "guidance", tagLabel: "General guidance",
+        q: "A group representing Syrians would like to meet the Home Secretary. Is there any way to do this?",
+        a: [
+          "The panel suggested contacting the Home Secretary's office and requesting a meeting.",
+          "<span class=\"note\"><strong>Organiser note:</strong> contact details for the Home Office, including how to write to ministers, are at <a href=\"https://www.gov.uk/guidance/contact-the-home-office\" target=\"_blank\" rel=\"noopener\">gov.uk/guidance/contact-the-home-office</a>.</span>"
+        ]
+      }
+    ]
+  },
+  {
+    group: "eVisas and Share Codes",
+    items: [
+      {
+        tag: "current", tagLabel: "Current rule",
+        q: "After applying for ILR at the end of my five-year refugee leave, I cannot generate a share code, which is affecting my job and right to rent. UKVI and the eVisa team keep referring me to each other. What should I do?",
+        a: [
+          "If you applied for settlement before your refugee leave expired, your status should continue while the settlement application is being decided (leave under section 3C), so you should still have access to everything, including your share code. The panel said this appears to be a system problem rather than a problem with the person's leave.",
+          "The panel asked to be told about such cases. They have resolved several before, often with a simple email to the eVisa team, which can relieve a lot of stress. There have also been cases where a grant of leave did not appear on the person's eVisa and had to be corrected several times.",
+          "The panel will feed the share code issue back to the responsible team. In the meantime, contact UKVI through <a href=\"https://www.gov.uk/contact-ukvi-inside-outside-uk\" target=\"_blank\" rel=\"noopener\">gov.uk/contact-ukvi-inside-outside-uk</a>, or let the organisers know so the case can be passed to the panel."
+        ]
+      }
+    ]
+  },
+  {
+    group: "Safeguarding, Surgeries and Avoiding Fraud",
+    items: [
+      {
+        tag: "guidance", tagLabel: "General guidance",
+        q: "Does the safeguarding lead support applicants directly, or only Home Office staff?",
+        a: [
+          "The safeguarding lead does not normally take referrals directly from applicants. She works with referrals from partners such as charities, the NHS, local authorities and the police.",
+          "If you have a specific safeguarding concern, you can contact the National Community Engagement Team through the organisers (Atlas for Humanity or the Syrian British Consortium), and they will pass it to the safeguarding lead to see if she can help. She cannot influence any decisions."
+        ]
+      },
+      {
+        tag: "current", tagLabel: "Current rule",
+        q: "Are there Home Office surgeries outside London, for example in Manchester or the North West?",
+        a: [
+          "Yes, there are surgeries across the UK, although not everywhere, and some have closed. A surgery restarted in late September 2026 and is open to all nationalities: <strong>Nigerian Community Association Rochdale, 58 Drake Street, Rochdale OL16 1PA, tel. 07256 136150</strong>. Please call before going to check dates and times. Full details of the London surgery are in the Contacts section below."
+        ]
+      },
+      {
+        tag: "guidance", tagLabel: "General guidance",
+        q: "How can a Home Office surgery help, and how do I protect myself from bad advice?",
+        a: [
+          "At a surgery, Home Office staff can check what is actually on the system. A common finding is that people believe their papers have been with the Home Office for years, but no application was ever submitted: someone took their money and never lodged it. In other cases, sponsors have withdrawn sponsorship without telling the worker. The surgery may not tell you what you want to hear, but it shows what is on the system.",
+          "Elderly applicants or those without English or digital skills who used an intermediary should use the sessions and surgeries to check their application.",
+          "Only use regulated advisers. The <a href=\"https://www.gov.uk/find-an-immigration-adviser/search-for-an-adviser\" target=\"_blank\" rel=\"noopener\">official adviser search</a> lets you enter your postcode to find regulated advisers near you; some give free advice. Do not use anyone who simply claims to be a solicitor: the panel sees people harmed by bogus immigration advice every day."
+        ]
+      }
+    ]
+  },
+  {
+    group: "Questions Not Answered in the Session",
+    items: [
+      {
+        tag: "notcovered", tagLabel: "Not answered in session",
+        q: "My children have lived legally in the UK for seven years. Does that change anything about their application?",
+        a: [
+          "This question was raised in the chat but not answered by the Home Office panel. Rules on children's long residence and private life are set out in the <a href=\"https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-private-life\" target=\"_blank\" rel=\"noopener\">Immigration Rules Appendix Private Life</a>. Please speak to a regulated adviser about your children's circumstances."
+        ]
+      },
+      {
+        tag: "notcovered", tagLabel: "Not answered in session",
+        q: "I came to the UK in 2018, spent five years as a student and then five years as a refugee. Can I apply for ILR on the 10-year route?",
+        a: [
+          "This was not answered in the session. The panel's general principle was that time only counts towards ILR if the route counts towards settlement. The 10-year route is set out in the <a href=\"https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-long-residence\" target=\"_blank\" rel=\"noopener\">Immigration Rules Appendix Long Residence</a>. Take advice before applying, particularly as settlement rules are under review."
+        ]
+      },
+      {
+        tag: "notcovered", tagLabel: "Not answered in session",
+        q: "If I have an outstanding settlement application and qualify for the 10-year private life route, can I apply on a different route while my application is pending?",
+        a: [
+          "This was not answered directly by the panel. Previous sessions stressed that withdrawing a pending application can leave you without lawful status, so do not withdraw or change an application without independent legal advice from a regulated adviser."
+        ]
+      }
+    ]
+  }
+];
+
+const topicsEl = document.getElementById('topics');
+const searchEl = document.getElementById('search');
+const noResultsEl = document.getElementById('noResults');
+const countLineEl = document.getElementById('countLine');
+
+let totalCount = 0;
+DATA.forEach(g => totalCount += g.items.length);
+countLineEl.textContent = `Browse ${totalCount} questions`;
+
+let globalIdx = 0;
+DATA.forEach(group => {
+  const groupEl = document.createElement('div');
+  groupEl.className = 'topic-group';
+  const heading = document.createElement('h2');
+  heading.className = 'topic-heading';
+  heading.textContent = group.group;
+  groupEl.appendChild(heading);
+
+  group.items.forEach(item => {
+    globalIdx++;
+    const id = 'q-' + globalIdx;
+    const details = document.createElement('details');
+    details.className = 'qa';
+    details.id = id;
+    const tmp = document.createElement('div');
+    tmp.innerHTML = item.q + ' ' + item.a.join(' ');
+    details.dataset.searchText = tmp.textContent.toLowerCase();
+
+    const summary = document.createElement('summary');
+    summary.className = 'q-summary';
+    summary.innerHTML = `<span class="caret">▸</span><span class="q-text">${item.q}</span><span class="tag tag-${item.tag}">${item.tagLabel}</span>`;
+    details.appendChild(summary);
+
+    const body = document.createElement('div');
+    body.className = 'a-body';
+    item.a.forEach(p => {
+      const para = document.createElement('p');
+      para.innerHTML = p;
+      body.appendChild(para);
+    });
+    const link = document.createElement('a');
+    link.className = 'anchor-link';
+    link.href = '#' + id;
+    link.textContent = 'Link to this answer';
+    body.appendChild(link);
+
+    details.appendChild(body);
+    groupEl.appendChild(details);
+  });
+  topicsEl.appendChild(groupEl);
+});
+
+if (location.hash) {
+  const target = document.querySelector(location.hash);
+  if (target && target.tagName === 'DETAILS') { target.open = true; target.scrollIntoView(); }
+}
+
+searchEl.addEventListener('input', () => {
+  const term = searchEl.value.trim().toLowerCase();
+  let visibleCount = 0;
+  document.querySelectorAll('.topic-group').forEach(groupEl => {
+    let groupHasVisible = false;
+    groupEl.querySelectorAll('details.qa').forEach(d => {
+      const match = !term || d.dataset.searchText.includes(term);
+      d.style.display = match ? '' : 'none';
+      if (match) { groupHasVisible = true; visibleCount++; }
+      if (term && match) d.open = true;
+      if (!term) d.open = false;
+    });
+    groupEl.style.display = groupHasVisible ? '' : 'none';
+  });
+  noResultsEl.classList.toggle('show', visibleCount === 0);
+  countLineEl.textContent = term ? `${visibleCount} of ${totalCount} questions match` : `Browse ${totalCount} questions`;
+});
+
+document.getElementById('legendToggle').addEventListener('click', (e) => {
+  const legend = document.getElementById('legend');
+  const open = legend.classList.toggle('open');
+  e.target.setAttribute('aria-expanded', open);
+  e.target.textContent = open ? 'Hide tags' : 'Show tags';
+});
+</script>
+</body>
+</html>
