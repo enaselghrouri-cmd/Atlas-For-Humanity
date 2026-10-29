@@ -414,7 +414,20 @@
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
-        document.addEventListener('DOMContentLoaded', () => { showPage('home'); });
+        document.addEventListener('DOMContentLoaded', () => {
+    const pageId = window.location.hash.substring(1);
+    const validPage = pageId && document.getElementById(pageId)?.classList.contains('page-section');
+
+    showPage(validPage ? pageId : 'home');
+});
+
+window.addEventListener('hashchange', () => {
+    const pageId = window.location.hash.substring(1);
+
+    if (pageId && document.getElementById(pageId)?.classList.contains('page-section')) {
+        showPage(pageId);
+    }
+});
     </script>
 </body>
 </html>
